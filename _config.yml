@@ -1,2 +1,4 @@
+remote_theme: lekoarts/jekyll-theme-caymanized
+plugins:
+  - jekyll-remote-theme
 title: Phat Portfolio
-theme: jekyll-theme-minimal
