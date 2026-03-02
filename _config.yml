@@ -1,4 +1,7 @@
+title: Phat Portfolio
+description: Data Engineer | AI Engineer
+
 remote_theme: lekoarts/jekyll-theme-caymanized
+
 plugins:
   - jekyll-remote-theme
-title: Phat Portfolio
