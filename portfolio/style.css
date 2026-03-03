@@ -11,6 +11,138 @@ body {
     line-height: 1.6;
 }
 
+.layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 240px;
+    padding: 32px 20px;
+    background: #0b1220;
+    border-right: 1px solid #1e293b;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
+
+.sidebar-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.sidebar-profile {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.sidebar-name {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.sidebar-role {
+    font-size: 13px;
+    color: #94a3b8;
+}
+
+.sidebar-title {
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #64748b;
+    margin-bottom: 10px;
+}
+
+.sidebar-nav {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sidebar-nav a {
+    color: #e2e8f0;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s ease;
+}
+
+.sidebar-nav a:hover {
+    color: #38bdf8;
+}
+
+.content {
+    flex: 1;
+}
+
+.language-switcher {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(15, 23, 42, 0.7);
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px solid #1e293b;
+    backdrop-filter: blur(8px);
+}
+
+.lang-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #334155;
+    transition: 0.2s ease;
+    border-radius: 999px;
+}
+
+.slider::before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 2px;
+    bottom: 2px;
+    background-color: #f8fafc;
+    transition: 0.2s ease;
+    border-radius: 50%;
+}
+
+.switch input:checked + .slider {
+    background-color: #38bdf8;
+}
+
+.switch input:checked + .slider::before {
+    transform: translateX(24px);
+}
+
 .container {
     max-width: 900px;
     margin: 60px auto;
@@ -68,4 +200,22 @@ footer {
     text-align: center;
     font-size: 14px;
     color: #94a3b8;
+}
+
+@media (max-width: 900px) {
+    .layout {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        border-right: none;
+        border-bottom: 1px solid #1e293b;
+    }
+
+    .language-switcher {
+        position: absolute;
+    }
 }

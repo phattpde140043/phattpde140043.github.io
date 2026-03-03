@@ -1,0 +1,28 @@
+{
+  "pageTitle": "Phat Tran | Backend Developer",
+  "headline": "Backend Developer | .NET | Data Engineering",
+  "languageLabel": "Language",
+  "aboutTitle": "About Me",
+  "aboutBody": "Backend developer passionate about clean architecture, scalable APIs, and data pipeline systems. Strong foundation in multi-layer architecture and validation logic.",
+  "skillsTitle": "Technical Skills",
+  "skills": [
+    "C# / ASP.NET Core",
+    "REST API Design",
+    "SQL Server",
+    "Docker",
+    "Git"
+  ],
+  "projectsTitle": "Projects",
+  "sidebarRole": "Backend Developer",
+  "sidebarNavTitle": "Navigation",
+  "navTop": "Top",
+  "navAbout": "About",
+  "navSkills": "Skills",
+  "navProjects": "Projects",
+  "navFooter": "Footer",
+  "project1Title": "Access Management API",
+  "project1Body": "Enterprise-level API with validation, rate limiting and Swagger documentation.",
+  "project2Title": "Streaming Data Pipeline",
+  "project2Body": "Designed large-scale streaming pipeline following Medallion architecture concept.",
+  "footer": "© 2026 Phat Tran"
+}

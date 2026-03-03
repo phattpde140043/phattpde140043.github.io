@@ -1,0 +1,28 @@
+{
+  "pageTitle": "Phat Tran | Lập trình viên Backend",
+  "headline": "Lập trình viên Backend | .NET | Kỹ thuật dữ liệu",
+  "languageLabel": "Ngôn ngữ",
+  "aboutTitle": "Giới thiệu",
+  "aboutBody": "Lập trình viên backend yêu thích kiến trúc sạch, API mở rộng và hệ thống pipeline dữ liệu. Nền tảng vững về kiến trúc nhiều tầng và logic kiểm tra dữ liệu.",
+  "skillsTitle": "Kỹ năng kỹ thuật",
+  "skills": [
+    "C# / ASP.NET Core",
+    "Thiết kế REST API",
+    "SQL Server",
+    "Docker",
+    "Git"
+  ],
+  "projectsTitle": "Dự án",
+  "sidebarRole": "Lập trình viên Backend",
+  "sidebarNavTitle": "Điều hướng",
+  "navTop": "Đầu trang",
+  "navAbout": "Giới thiệu",
+  "navSkills": "Kỹ năng",
+  "navProjects": "Dự án",
+  "navFooter": "Chân trang",
+  "project1Title": "Access Management API",
+  "project1Body": "API cấp doanh nghiệp với kiểm tra dữ liệu, giới hạn tần suất và tài liệu Swagger.",
+  "project2Title": "Streaming Data Pipeline",
+  "project2Body": "Thiết kế pipeline streaming quy mô lớn theo kiến trúc Medallion.",
+  "footer": "© 2026 Phat Tran"
+}

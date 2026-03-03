@@ -2,59 +2,65 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Phat Tran | Backend Developer</title>
+    <title data-i18n="pageTitle"></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="container">
+    <div class="layout">
+        <aside id="sidebar" class="sidebar" data-include="sidebar.html"></aside>
+        <main class="content">
+            <div class="container">
 
-        <header>
+        <header id="top">
             <h1>Phat Tran</h1>
-            <h2>Backend Developer | .NET | Data Engineering</h2>
+            <h2 data-i18n="headline"></h2>
+            <div class="language-switcher">
+                <span class="lang-label">VI</span>
+                <label class="switch" for="lang-switch">
+                    <input type="checkbox" id="lang-switch" aria-label="Language switch">
+                    <span class="slider" aria-hidden="true"></span>
+                </label>
+                <span class="lang-label">EN</span>
+            </div>
         </header>
 
-        <section class="about">
-            <h3>About Me</h3>
+        <section class="about" id="about">
+            <h3 data-i18n="aboutTitle"></h3>
             <p>
-                Backend developer passionate about clean architecture,
-                scalable APIs, and data pipeline systems.
-                Strong foundation in multi-layer architecture and validation logic.
+                <span data-i18n="aboutBody"></span>
             </p>
         </section>
 
-        <section class="skills">
-            <h3>Technical Skills</h3>
-            <ul>
-                <li>C# / ASP.NET Core</li>
-                <li>REST API Design</li>
-                <li>SQL Server</li>
-                <li>Docker</li>
-                <li>Git</li>
-            </ul>
+        <section class="skills" id="skills">
+            <h3 data-i18n="skillsTitle"></h3>
+            <ul data-i18n-list="skills"></ul>
         </section>
 
-        <section class="projects">
-            <h3>Projects</h3>
+        <section class="projects" id="projects">
+            <h3 data-i18n="projectsTitle"></h3>
 
             <div class="project">
-                <h4>Access Management API</h4>
-                <p>Enterprise-level API with validation, rate limiting and Swagger documentation.</p>
+                <h4 data-i18n="project1Title"></h4>
+                <p data-i18n="project1Body"></p>
             </div>
 
             <div class="project">
-                <h4>Streaming Data Pipeline</h4>
-                <p>Designed large-scale streaming pipeline following Medallion architecture concept.</p>
+                <h4 data-i18n="project2Title"></h4>
+                <p data-i18n="project2Body"></p>
             </div>
 
         </section>
 
-        <footer>
-            <p>© 2026 Phat Tran</p>
+        <footer id="footer">
+            <p data-i18n="footer"></p>
         </footer>
 
+            </div>
+        </main>
     </div>
 
+    <script src="index.js"></script>
 </body>
 </html>
