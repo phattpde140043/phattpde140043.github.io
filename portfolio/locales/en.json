@@ -4,6 +4,20 @@
   "languageLabel": "Language",
   "aboutTitle": "About Me",
   "aboutBody": "Backend developer passionate about clean architecture, scalable APIs, and data pipeline systems. Strong foundation in multi-layer architecture and validation logic.",
+  "contactTitle": "Contact",
+  "contactEmailLabel": "Email",
+  "contactLocationLabel": "Location",
+  "contactAvailabilityLabel": "Availability",
+  "contactAvailabilityValue": "Available for work in Da Nang, Ho Chi Minh",
+  "educationTitle": "Education",
+  "educationItems": [
+    "B.Sc. in Information Technology — Your University (2021–2025)"
+  ],
+  "certificatesTitle": "Certificates",
+  "certificatesItems": [
+    "Azure Fundamentals (AZ-900)",
+    "SQL for Data Engineering"
+  ],
   "skillsTitle": "Technical Skills",
   "skills": [
     "C# / ASP.NET Core",
@@ -14,12 +28,6 @@
   ],
   "projectsTitle": "Projects",
   "sidebarRole": "Backend Developer",
-  "sidebarNavTitle": "Navigation",
-  "navTop": "Top",
-  "navAbout": "About",
-  "navSkills": "Skills",
-  "navProjects": "Projects",
-  "navFooter": "Footer",
   "project1Title": "Access Management API",
   "project1Body": "Enterprise-level API with validation, rate limiting and Swagger documentation.",
   "project2Title": "Streaming Data Pipeline",

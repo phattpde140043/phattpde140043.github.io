@@ -4,6 +4,20 @@
   "languageLabel": "Ngôn ngữ",
   "aboutTitle": "Giới thiệu",
   "aboutBody": "Lập trình viên backend yêu thích kiến trúc sạch, API mở rộng và hệ thống pipeline dữ liệu. Nền tảng vững về kiến trúc nhiều tầng và logic kiểm tra dữ liệu.",
+  "contactTitle": "Liên hệ",
+  "contactEmailLabel": "Email",
+  "contactLocationLabel": "Địa điểm",
+  "contactAvailabilityLabel": "Sẵn sàng",
+  "contactAvailabilityValue": "Có thể làm việc tại Đà Nẵng, TP. Hồ Chí Minh",
+  "educationTitle": "Học vấn",
+  "educationItems": [
+    "Cử nhân Công nghệ Thông tin — Trường Đại học (2021–2025)"
+  ],
+  "certificatesTitle": "Chứng chỉ",
+  "certificatesItems": [
+    "Azure Fundamentals (AZ-900)",
+    "SQL cho Data Engineering"
+  ],
   "skillsTitle": "Kỹ năng kỹ thuật",
   "skills": [
     "C# / ASP.NET Core",
@@ -14,12 +28,6 @@
   ],
   "projectsTitle": "Dự án",
   "sidebarRole": "Lập trình viên Backend",
-  "sidebarNavTitle": "Điều hướng",
-  "navTop": "Đầu trang",
-  "navAbout": "Giới thiệu",
-  "navSkills": "Kỹ năng",
-  "navProjects": "Dự án",
-  "navFooter": "Chân trang",
   "project1Title": "Access Management API",
   "project1Body": "API cấp doanh nghiệp với kiểm tra dữ liệu, giới hạn tần suất và tài liệu Swagger.",
   "project2Title": "Streaming Data Pipeline",
