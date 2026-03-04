@@ -11,13 +11,26 @@
   "contactAvailabilityValue": "Có thể làm việc tại Đà Nẵng, TP. Hồ Chí Minh",
   "educationTitle": "Học vấn",
   "educationItems": [
-    "Cử nhân Công nghệ Thông tin — Trường Đại học (2021–2025)"
+    {
+      "school": "FPT School of Business & Technology",
+      "major": "Master Software in AI",
+      "period": "2024–nay",
+      "status": "Đang học"
+    },
+    {
+      "school": "Đại học FPT",
+      "major": "Kỹ Thuật Phần Mềm",
+      "period": "2023",
+      "status": "Đã tốt nghiệp"
+    }
   ],
   "certificatesTitle": "Chứng chỉ",
   "certificatesItems": [
     "Azure Fundamentals (AZ-900)",
-    "SQL cho Data Engineering"
+    "Microsoft Certified: Azure Data Fundamentals",
+    "Google Data Analytics Professional Certificate"
   ],
+  "certificatesMore": "Xem thêm",
   "skillsTitle": "Kỹ năng kỹ thuật",
   "skills": [
     "C# / ASP.NET Core",
@@ -27,6 +40,7 @@
     "Git"
   ],
   "projectsTitle": "Dự án",
+  "projectsMore": "Xem thêm",
   "sidebarRole": "Lập trình viên Backend",
   "project1Title": "Access Management API",
   "project1Body": "API cấp doanh nghiệp với kiểm tra dữ liệu, giới hạn tần suất và tài liệu Swagger.",
