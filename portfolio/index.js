@@ -15,6 +15,202 @@ const setHtmlLang = (lang) => {
 	document.documentElement.setAttribute("lang", lang);
 };
 
+const renderList = (el, items) => {
+	if (!Array.isArray(items)) return;
+	el.innerHTML = "";
+	items.forEach((item) => {
+		const li = document.createElement("li");
+		li.textContent = item;
+		el.appendChild(li);
+	});
+};
+
+const renderEducationList = (el, items) => {
+	if (!Array.isArray(items)) return;
+	el.innerHTML = "";
+	items.forEach((item) => {
+		if (!item || typeof item !== "object") return;
+		const card = document.createElement("article");
+		card.className = "education-item";
+
+		const top = document.createElement("div");
+		top.className = "education-top";
+
+		const school = document.createElement("div");
+		school.className = "education-school";
+		school.textContent = item.school || "";
+
+		const badge = document.createElement("span");
+		badge.className = "education-badge";
+		badge.textContent = item.status || "";
+
+		const period = document.createElement("span");
+		period.className = "education-period";
+		period.textContent = item.period || "";
+		top.appendChild(school);
+
+		const major = document.createElement("div");
+		major.className = "education-major";
+		major.textContent = item.major || "";
+
+		const bottom = document.createElement("div");
+		bottom.className = "education-bottom";
+		bottom.appendChild(major);
+		bottom.appendChild(period);
+
+		card.appendChild(top);
+		top.appendChild(badge);
+		card.appendChild(bottom);
+		el.appendChild(card);
+	});
+};
+
+const resolveCertificateImagePath = (imageName) => {
+	if (!imageName) return "";
+	if (imageName.includes("/") || imageName.startsWith("http")) {
+		return imageName;
+	}
+	return `certificates/images/${imageName}`;
+};
+
+const renderResumeCertificates = (el, certificates) => {
+	if (!Array.isArray(certificates)) return;
+	el.innerHTML = "";
+	certificates
+		.filter((certificate) => {
+			if (!certificate || typeof certificate !== "object") return false;
+			const showOnResume = certificate.addRessume ?? certificate.addResume;
+			return Boolean(showOnResume);
+		})
+		.forEach((certificate) => {
+			const li = document.createElement("li");
+			const link = document.createElement("a");
+			link.href = certificate.certificateLink || "#";
+			link.target = "_blank";
+			link.rel = "noopener";
+			link.className = "more-link";
+			link.textContent = certificate.certificateName || "";
+			li.appendChild(link);
+			el.appendChild(li);
+		});
+};
+
+const renderCertificateGroups = (el, certificates) => {
+	if (!Array.isArray(certificates)) return;
+	el.innerHTML = "";
+	const groups = new Map();
+	certificates.forEach((certificate) => {
+		if (!certificate || typeof certificate !== "object") return;
+		const groupName = certificate.groupName || "Others";
+		if (!groups.has(groupName)) {
+			groups.set(groupName, []);
+		}
+		groups.get(groupName).push(certificate);
+	});
+
+	groups.forEach((items, groupName) => {
+		const group = document.createElement("div");
+		group.className = "cert-group";
+
+		const heading = document.createElement("h4");
+		heading.textContent = groupName;
+		group.appendChild(heading);
+
+		items.forEach((certificate) => {
+			const card = document.createElement("details");
+			card.className = "course-card";
+
+			const summary = document.createElement("summary");
+
+			const name = document.createElement("span");
+			name.className = "course-name";
+			name.textContent = certificate.certificateName || "";
+			summary.appendChild(name);
+
+			const badges = document.createElement("span");
+			badges.className = "course-badges";
+			if (Array.isArray(certificate.badges)) {
+				certificate.badges.forEach((badge) => {
+					const chip = document.createElement("span");
+					chip.className = "chip";
+					chip.textContent = badge;
+					badges.appendChild(chip);
+				});
+			}
+			summary.appendChild(badges);
+
+			const detail = document.createElement("div");
+			detail.className = "course-detail";
+
+			const hasCourses = Array.isArray(certificate.courses) && certificate.courses.length > 0;
+			if (hasCourses) {
+				detail.classList.add("course-detail--with-courses");
+			}
+
+			const certificateFile = document.createElement("div");
+			certificateFile.className = "certificate-file";
+			if (!hasCourses) {
+				certificateFile.classList.add("certificate-file--no-courses");
+			}
+			if (certificate.certificateLink) {
+				const certLink = document.createElement("a");
+				certLink.href = certificate.certificateLink;
+				certLink.target = "_blank";
+				certLink.rel = "noopener";
+				certLink.className = "more-link";
+				certLink.textContent = "View certificate";
+				certificateFile.appendChild(certLink);
+			}
+
+			if (certificate.certificateImage) {
+				const imageWrap = document.createElement("div");
+				imageWrap.className = "certificate-image-wrap";
+
+				const image = document.createElement("img");
+				image.className = "certificate-image";
+				image.loading = "lazy";
+				image.alt = certificate.certificateName || "Certificate image";
+				image.src = resolveCertificateImagePath(certificate.certificateImage);
+				image.addEventListener("error", () => {
+					imageWrap.remove();
+				});
+
+				imageWrap.appendChild(image);
+				certificateFile.appendChild(imageWrap);
+			}
+
+			detail.appendChild(certificateFile);
+
+			if (hasCourses) {
+				const courseList = document.createElement("ul");
+				courseList.className = "course-sublist";
+				certificate.courses.forEach((course) => {
+					if (!course || typeof course !== "object") return;
+					const li = document.createElement("li");
+					if (course.certificateLink) {
+						const link = document.createElement("a");
+						link.href = course.certificateLink;
+						link.target = "_blank";
+						link.rel = "noopener";
+						link.textContent = course.courseName || "";
+						li.appendChild(link);
+					} else {
+						li.textContent = course.courseName || "";
+					}
+					courseList.appendChild(li);
+				});
+				detail.appendChild(courseList);
+			}
+
+			card.appendChild(summary);
+			card.appendChild(detail);
+			group.appendChild(card);
+		});
+
+		el.appendChild(group);
+	});
+};
+
 const applyTranslations = (translations) => {
 	document.querySelectorAll("[data-i18n]").forEach((el) => {
 		const key = el.getAttribute("data-i18n");
@@ -32,56 +228,14 @@ const applyTranslations = (translations) => {
 		const key = el.getAttribute("data-i18n-list");
 		if (!key) return;
 		const items = translations[key];
-		if (!Array.isArray(items)) return;
-		el.innerHTML = "";
-		items.forEach((item) => {
-			const li = document.createElement("li");
-			li.textContent = item;
-			el.appendChild(li);
-		});
+		renderList(el, items);
 	});
 
 	document.querySelectorAll("[data-i18n-education-list]").forEach((el) => {
 		const key = el.getAttribute("data-i18n-education-list");
 		if (!key) return;
 		const items = translations[key];
-		if (!Array.isArray(items)) return;
-		el.innerHTML = "";
-		items.forEach((item) => {
-			if (!item || typeof item !== "object") return;
-			const card = document.createElement("article");
-			card.className = "education-item";
-
-			const top = document.createElement("div");
-			top.className = "education-top";
-
-			const school = document.createElement("div");
-			school.className = "education-school";
-			school.textContent = item.school || "";
-
-			const badge = document.createElement("span");
-			badge.className = "education-badge";
-			badge.textContent = item.status || "";
-
-			const period = document.createElement("span");
-			period.className = "education-period";
-			period.textContent = item.period || "";
-			top.appendChild(school);
-
-			const major = document.createElement("div");
-			major.className = "education-major";
-			major.textContent = item.major || "";
-
-			const bottom = document.createElement("div");
-			bottom.className = "education-bottom";
-			bottom.appendChild(major);
-			bottom.appendChild(period);
-
-			card.appendChild(top);
-			top.appendChild(badge);
-			card.appendChild(bottom);
-			el.appendChild(card);
-		});
+		renderEducationList(el, items);
 	});
 };
 
@@ -103,6 +257,34 @@ const applyCommon = (common) => {
 				el.setAttribute("href", value);
 			}
 		});
+
+	document.querySelectorAll("[data-common-list]").forEach((el) => {
+		const key = el.getAttribute("data-common-list");
+		if (!key) return;
+		const items = common[key];
+		renderList(el, items);
+	});
+
+	document.querySelectorAll("[data-common-education-list]").forEach((el) => {
+		const key = el.getAttribute("data-common-education-list");
+		if (!key) return;
+		const items = common[key];
+		renderEducationList(el, items);
+	});
+
+	document.querySelectorAll("[data-common-resume-certificates]").forEach((el) => {
+		const key = el.getAttribute("data-common-resume-certificates");
+		if (!key) return;
+		const certificates = common[key];
+		renderResumeCertificates(el, certificates);
+	});
+
+	document.querySelectorAll("[data-common-cert-groups]").forEach((el) => {
+		const key = el.getAttribute("data-common-cert-groups");
+		if (!key) return;
+		const certificates = common[key];
+		renderCertificateGroups(el, certificates);
+	});
 };
 
 const loadIncludes = async () => {
@@ -128,10 +310,137 @@ const loadIncludes = async () => {
 const inlineCommon = {
 	name: "Tran Phu Phat",
 	headline: "Backend Engineer focused on Data & AI Systems",
+	pageTitle: "Phat Tran | Backend Developer",
 	sidebarNavTitle: "Sections",
 	navResume: "Resume",
 	navProjects: "Projects",
 	navCertificates: "Certificates",
+	contactTitle: "Contact",
+	contactEmailLabel: "Email",
+	contactLocationLabel: "Location",
+	contactAvailabilityLabel: "Availability",
+	contactAvailabilityValue: "Available for work in Da Nang, Ho Chi Minh",
+	educationTitle: "Education",
+	educationItems: [
+		{
+			school: "FPT School of Business & Technology",
+			major: "Master Software in AI",
+			period: "2024–present",
+			status: "Studying",
+		},
+		{
+			school: "FPT University",
+			major: "Software Engineering",
+			period: "2023",
+			status: "Graduated",
+		},
+	],
+	certificatesTitle: "Certificates",
+	certificates: [
+		{
+			certificateName: "Databricks Data Engineer Professional Certificate",
+			groupName: "Data Engineering",
+			badges: ["Databricks", "Data Engineering"],
+			addRessume: true,
+			certificateLink:
+				"https://credentials.databricks.com/6bced44e-c21d-496b-82a4-b5e524ead3cb#acc.8FhWCZjG",
+			certificateImage: "databricks-data-engineer-professional-certificate.png",
+			courses: [],
+		},
+		{
+			certificateName: "IBM Data Architecture Professional Certificate",
+			groupName: "Data Engineering",
+			badges: ["IBM", "Data Architecture"],
+			addRessume: true,
+			certificateLink: "certificates/ibm-data-architecture-professional-certificate.pdf",
+			certificateImage: "ibm-data-architecture-professional-certificate.png",
+			courses: [
+				{
+					courseName: "Introduction to Data Engineering",
+					certificateLink: "certificates/courses/introduction-to-data-engineering.pdf",
+				},
+				{
+					courseName: "Introduction to Relational Databases (RDBMS)",
+					certificateLink:
+						"certificates/courses/introduction-to-relational-databases-rdbms.pdf",
+				},
+				{
+					courseName: "SQL: A Practical Introduction for Querying Databases",
+					certificateLink:
+						"certificates/courses/sql-a-practical-introduction-for-querying-databases.pdf",
+				},
+				{
+					courseName: "Hands-on Introduction to Linux Commands and Shell Scripting",
+					certificateLink:
+						"certificates/courses/hands-on-introduction-to-linux-commands-and-shell-scripting.pdf",
+				},
+				{
+					courseName: "Relational Database Administration (DBA)",
+					certificateLink:
+						"certificates/courses/relational-database-administration-dba.pdf",
+				},
+				{
+					courseName: "Data Warehouse Fundamentals",
+					certificateLink: "certificates/courses/data-warehouse-fundamentals.pdf",
+				},
+				{
+					courseName: "Introduction to NoSQL Databases",
+					certificateLink: "certificates/courses/introduction-to-nosql-databases.pdf",
+				},
+				{
+					courseName: "ETL and Data Pipelines with Shell, Airflow and Kafka",
+					certificateLink:
+						"certificates/courses/etl-and-data-pipelines-with-shell-airflow-and-kafka.pdf",
+				},
+				{
+					courseName: "Introduction to Big Data with Spark and Hadoop",
+					certificateLink:
+						"certificates/courses/introduction-to-big-data-with-spark-and-hadoop.pdf",
+				},
+				{
+					courseName: "Data Integration, Data Storage, & Data Migration",
+					certificateLink:
+						"certificates/courses/data-integration-data-storage-and-data-migration.pdf",
+				},
+				{
+					courseName: "Data Privacy, Security, Governance, Risk and Compliance",
+					certificateLink:
+						"certificates/courses/data-privacy-security-governance-risk-and-compliance.pdf",
+				},
+				{
+					courseName: "Enterprise Data Architecture and Operations",
+					certificateLink:
+						"certificates/courses/enterprise-data-architecture-and-operations.pdf",
+				},
+				{
+					courseName: "Data Architect Capstone Project",
+					certificateLink:
+						"certificates/courses/data-architect-capstone-project.pdf",
+				},
+			],
+		},
+		{
+			certificateName: "Agile Meets Design Thinking",
+			groupName: "Soft Skills",
+			badges: ["Agile", "Design Thinking"],
+			addRessume: true,
+			certificateLink: "certificates/agile-meets-design-thinking.pdf",
+			certificateImage: "agile-meets-design-thinking.jpg",
+			courses: [
+				{
+					courseName: "Agile Project Planning",
+					certificateLink: "certificates/courses/agile-project-planning.pdf",
+				},
+				{
+					courseName: "Design Thinking Foundations",
+					certificateLink: "certificates/courses/design-thinking-foundations.pdf",
+				},
+			],
+		},
+	],
+	certificatesMore: "See more",
+	skillsTitle: "Technical Skills",
+	skills: ["C# / ASP.NET Core", "REST API Design", "SQL Server", "Docker", "Git"],
 	cvUrl: "assets/cv.pdf",
 	mailUrl: "mailto:phattp1912@gmail.com",
 	email: "phattp1912@gmail.com",
@@ -179,39 +488,9 @@ const inlineIncludes = {
 
 const inlineTranslations = {
 	en: {
-		pageTitle: "Phat Tran | Backend Developer",
 		aboutTitle: "About Me",
 		aboutBody:
 			"Backend developer passionate about clean architecture, scalable APIs, and data pipeline systems. Strong foundation in multi-layer architecture and validation logic.",
-		contactTitle: "Contact",
-		contactEmailLabel: "Email",
-		contactLocationLabel: "Location",
-		contactAvailabilityLabel: "Availability",
-		contactAvailabilityValue: "Available for work in Da Nang, Ho Chi Minh",
-		educationTitle: "Education",
-		educationItems: [
-			{
-				school: "FPT School of Business & Technology",
-				major: "Master Software in AI",
-				period: "2024–present",
-				status: "Studying",
-			},
-			{
-				school: "FPT University",
-				major: "Software Engineering",
-				period: "2023",
-				status: "Graduated",
-			},
-		],
-		certificatesTitle: "Certificates",
-		certificatesItems: [
-			"Azure Fundamentals (AZ-900)",
-			"Microsoft Certified: Azure Data Fundamentals",
-			"Google Data Analytics Professional Certificate",
-		],
-		certificatesMore: "See more",
-		skillsTitle: "Technical Skills",
-		skills: ["C# / ASP.NET Core", "REST API Design", "SQL Server", "Docker", "Git"],
 		projectsTitle: "Projects",
 		projectsMore: "See more",
 		project1Title: "Access Management API",
@@ -223,39 +502,9 @@ const inlineTranslations = {
 		footer: "© 2026 Phat Tran",
 	},
 	vi: {
-		pageTitle: "Phat Tran | Lập trình viên Backend",
 		aboutTitle: "Giới thiệu",
 		aboutBody:
 			"Lập trình viên backend yêu thích kiến trúc sạch, API mở rộng và hệ thống pipeline dữ liệu. Nền tảng vững về kiến trúc nhiều tầng và logic kiểm tra dữ liệu.",
-		contactTitle: "Liên hệ",
-		contactEmailLabel: "Email",
-		contactLocationLabel: "Địa điểm",
-		contactAvailabilityLabel: "Sẵn sàng",
-		contactAvailabilityValue: "Có thể làm việc tại Đà Nẵng, TP. Hồ Chí Minh",
-		educationTitle: "Học vấn",
-		educationItems: [
-			{
-				school: "FPT School of Business & Technology",
-				major: "Master Software in AI",
-				period: "2024–nay",
-				status: "Đang học",
-			},
-			{
-				school: "Đại học FPT",
-				major: "Kỹ Thuật Phần Mềm",
-				period: "2023",
-				status: "Đã tốt nghiệp",
-			},
-		],
-		certificatesTitle: "Chứng chỉ",
-		certificatesItems: [
-			"Azure Fundamentals (AZ-900)",
-			"Microsoft Certified: Azure Data Fundamentals",
-			"Google Data Analytics Professional Certificate",
-		],
-		certificatesMore: "Xem thêm",
-		skillsTitle: "Kỹ năng kỹ thuật",
-		skills: ["C# / ASP.NET Core", "Thiết kế REST API", "SQL Server", "Docker", "Git"],
 		projectsTitle: "Dự án",
 		projectsMore: "Xem thêm",
 		project1Title: "Access Management API",

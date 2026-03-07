@@ -517,6 +517,49 @@ li {
     font-size: 14px;
 }
 
+.course-detail--with-courses {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    align-items: start;
+}
+
+.certificate-file {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.course-detail--with-courses .certificate-file {
+    margin-bottom: 0;
+}
+
+.certificate-image-wrap {
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--color-bg);
+    width: 50%;
+}
+
+.course-detail--with-courses .certificate-image-wrap {
+    width: 100%;
+}
+
+.certificate-file--no-courses .certificate-image-wrap {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.certificate-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 280px;
+    object-fit: cover;
+}
+
 .course-sublist {
     display: flex;
     flex-direction: column;
@@ -526,9 +569,23 @@ li {
     border-left: 1px solid var(--color-border);
 }
 
+.course-detail--with-courses .course-sublist {
+    margin-left: 0;
+    margin-top: 0;
+}
+
 .course-sublist li {
     margin-bottom: 0;
     color: var(--color-muted);
+}
+
+.course-sublist a {
+    color: var(--color-accent);
+    text-decoration: none;
+}
+
+.course-sublist a:hover {
+    text-decoration: underline;
 }
 
 .sub-course-card {
@@ -621,5 +678,13 @@ footer {
     .content-grid {
         grid-template-columns: 1fr;
         gap: 32px;
+    }
+
+    .course-detail--with-courses {
+        grid-template-columns: 1fr;
+    }
+
+    .certificate-image-wrap {
+        width: 100%;
     }
 }

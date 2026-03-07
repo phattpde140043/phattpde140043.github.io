@@ -1,14 +1,145 @@
 {
     "name": "Tran Phu Phat",
     "headline": "Backend Engineer focused on Data & AI Systems",
+    "pageTitle": "Phat Tran | Backend Developer",
     "sidebarNavTitle": "Sections",
     "navResume": "Resume",
     "navProjects": "Projects",
     "navCertificates": "Certificates",
+    "contactTitle": "Contact",
+    "contactEmailLabel": "Email",
+    "contactLocationLabel": "Location",
+    "contactAvailabilityLabel": "Availability",
+    "contactAvailabilityValue": "Available for work in Da Nang, Ho Chi Minh",
+    "educationTitle": "Education",
     "cvUrl": "assets/cv.pdf",
     "mailUrl": "mailto:phattp1912@gmail.com",
     "email": "phattp1912@gmail.com",
     "location": "Thanh Khe, Da Nang, Viet Nam",
     "githubUrl": "https://github.com/your-handle",
-    "linkedinUrl": "https://www.linkedin.com/in/your-handle"
+    "linkedinUrl": "https://www.linkedin.com/in/your-handle",
+    "educationItems": [
+        {
+            "school": "FPT School of Business & Technology",
+            "major": "Master Software in AI",
+            "period": "2024–present",
+            "status": "Studying"
+        },
+        {
+            "school": "FPT University",
+            "major": "Software Engineering",
+            "period": "2023",
+            "status": "Graduated"
+        }
+    ],
+    "certificatesTitle": "Certificates",
+    "certificates": [
+        {
+            "certificateName": "Databricks Data Engineer Professional Certificate",
+            "groupName": "Data Engineering",
+            "badges": [
+                "Databricks",
+                "Data Engineering"
+            ],
+            "addRessume": true,
+            "certificateLink": "https://credentials.databricks.com/6bced44e-c21d-496b-82a4-b5e524ead3cb#acc.8FhWCZjG",
+            "certificateImage": "databricks-data-engineer-professional-certificate.png",
+            "courses": []
+        },
+        {
+            "certificateName": "IBM Data Architecture Professional Certificate",
+            "groupName": "Data Engineering",
+            "badges": [
+                "IBM",
+                "Data Architecture"
+            ],
+            "addRessume": true,
+            "certificateLink": "certificates/ibm-data-architecture-professional-certificate.pdf",
+            "certificateImage": "ibm-data-architecture-professional-certificate.jpg",
+            "courses": [
+                {
+                    "courseName": "Introduction to Data Engineering",
+                    "certificateLink": "certificates/courses/introduction-to-data-engineering.pdf"
+                },
+                {
+                    "courseName": "Introduction to Relational Databases (RDBMS)",
+                    "certificateLink": "certificates/courses/introduction-to-relational-databases-rdbms.pdf"
+                },
+                {
+                    "courseName": "SQL: A Practical Introduction for Querying Databases",
+                    "certificateLink": "certificates/courses/sql-a-practical-introduction-for-querying-databases.pdf"
+                },
+                {
+                    "courseName": "Hands-on Introduction to Linux Commands and Shell Scripting",
+                    "certificateLink": "certificates/courses/hands-on-introduction-to-linux-commands-and-shell-scripting.pdf"
+                },
+                {
+                    "courseName": "Relational Database Administration (DBA)",
+                    "certificateLink": "certificates/courses/relational-database-administration-dba.pdf"
+                },
+                {
+                    "courseName": "Data Warehouse Fundamentals",
+                    "certificateLink": "certificates/courses/data-warehouse-fundamentals.pdf"
+                },
+                {
+                    "courseName": "Introduction to NoSQL Databases",
+                    "certificateLink": "certificates/courses/introduction-to-nosql-databases.pdf"
+                },
+                {
+                    "courseName": "ETL and Data Pipelines with Shell, Airflow and Kafka",
+                    "certificateLink": "certificates/courses/etl-and-data-pipelines-with-shell-airflow-and-kafka.pdf"
+                },
+                {
+                    "courseName": "Introduction to Big Data with Spark and Hadoop",
+                    "certificateLink": "certificates/courses/introduction-to-big-data-with-spark-and-hadoop.pdf"
+                },
+                {
+                    "courseName": "Data Integration, Data Storage, & Data Migration",
+                    "certificateLink": "certificates/courses/data-integration-data-storage-and-data-migration.pdf"
+                },
+                {
+                    "courseName": "Data Privacy, Security, Governance, Risk and Compliance",
+                    "certificateLink": "certificates/courses/data-privacy-security-governance-risk-and-compliance.pdf"
+                },
+                {
+                    "courseName": "Enterprise Data Architecture and Operations",
+                    "certificateLink": "certificates/courses/enterprise-data-architecture-and-operations.pdf"
+                },
+                {
+                    "courseName": "Data Architect Capstone Project",
+                    "certificateLink": "certificates/courses/data-architect-capstone-project.pdf"
+                }
+            ]
+        },
+        {
+            "certificateName": "Agile Meets Design Thinking",
+            "groupName": "Soft Skills",
+            "badges": [
+                "Agile",
+                "Design Thinking"
+            ],
+            "addRessume": true,
+            "certificateLink": "certificates/agile-meets-design-thinking.pdf",
+            "certificateImage": "agile-meets-design-thinking.jpg",
+            "courses": [
+                {
+                    "courseName": "Agile Project Planning",
+                    "certificateLink": "certificates/courses/agile-project-planning.pdf"
+                },
+                {
+                    "courseName": "Design Thinking Foundations",
+                    "certificateLink": "certificates/courses/design-thinking-foundations.pdf"
+                }
+            ]
+        }
+    ],
+    "certificatesMore": "See more",
+    "skillsTitle": "Technical Skills",
+    "skills": [
+        "C# / ASP.NET Core",
+        "REST API Design",
+        "SQL Server",
+        "Docker",
+        "Git"
+    ]
 }

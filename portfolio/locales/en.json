@@ -1,47 +1,9 @@
 {
-  "pageTitle": "Phat Tran | Backend Developer",
-  "headline": "Backend Developer | .NET | Data Engineering",
   "languageLabel": "Language",
   "aboutTitle": "About Me",
   "aboutBody": "Backend developer passionate about clean architecture, scalable APIs, and data pipeline systems. Strong foundation in multi-layer architecture and validation logic.",
-  "contactTitle": "Contact",
-  "contactEmailLabel": "Email",
-  "contactLocationLabel": "Location",
-  "contactAvailabilityLabel": "Availability",
-  "contactAvailabilityValue": "Available for work in Da Nang, Ho Chi Minh",
-  "educationTitle": "Education",
-  "educationItems": [
-    {
-      "school": "FPT School of Business & Technology",
-      "major": "Master Software in AI",
-      "period": "2024–present",
-      "status": "Studying"
-    },
-    {
-      "school": "FPT University",
-      "major": "Software Engineering",
-      "period": "2023",
-      "status": "Graduated"
-    }
-  ],
-  "certificatesTitle": "Certificates",
-  "certificatesItems": [
-    "Azure Fundamentals (AZ-900)",
-    "Microsoft Certified: Azure Data Fundamentals",
-    "Google Data Analytics Professional Certificate"
-  ],
-  "certificatesMore": "See more",
-  "skillsTitle": "Technical Skills",
-  "skills": [
-    "C# / ASP.NET Core",
-    "REST API Design",
-    "SQL Server",
-    "Docker",
-    "Git"
-  ],
   "projectsTitle": "Projects",
   "projectsMore": "See more",
-  "sidebarRole": "Backend Developer",
   "project1Title": "Access Management API",
   "project1Body": "Enterprise-level API with validation, rate limiting and Swagger documentation.",
   "project2Title": "Streaming Data Pipeline",
