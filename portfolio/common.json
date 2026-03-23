@@ -32,6 +32,35 @@
             "status": "Graduated"
         }
     ],
+    "projectsTitle": "Projects",
+    "projects": [
+        {
+            "projectName": "Slide Builder — AI-Powered Presentation Generator",
+            "description": "Generate full PowerPoint presentations using a Multi-Agent AI system (17 agents).",
+            "badges": [
+                "Python",
+                "Google ADK Development Kit"
+            ],
+            "id": "slide-builder",
+            "link": "slide-builder.html",
+            "githubLink": "https://github.com/phattpde140043/Slide_builder",
+            "isVisible": true,
+            "displayOrder": 1
+        },
+        {
+            "projectName": "Sample Project 2",
+            "description": "Description for sample project 2.",
+            "badges": [
+                "Docker",
+                "SQL Server"
+            ],
+            "id": "sample-project-2",
+            "link": "sample-project-2.html",
+            "githubLink": "https://github.com/your-handle/project-2",
+            "isVisible": false,
+            "displayOrder": 2
+        }
+    ],
     "certificatesTitle": "Certificates",
     "certificates": [
         {

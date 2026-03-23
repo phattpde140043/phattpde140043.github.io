@@ -211,6 +211,83 @@ const renderCertificateGroups = (el, certificates) => {
 	});
 };
 
+const renderProjects = (el, projects) => {
+	if (!Array.isArray(projects)) return;
+	el.innerHTML = "";
+	
+	const sortedProjects = [...projects]
+		.filter((p) => p && p.isVisible)
+		.sort((a, b) => (a.displayOrder || 0) - (b.displayOrder || 0));
+
+	sortedProjects.forEach((project) => {
+		const card = document.createElement("div");
+		card.className = "project";
+
+		const headerWrap = document.createElement("div");
+		headerWrap.className = "project-header";
+		headerWrap.style.display = "flex";
+		headerWrap.style.justifyContent = "space-between";
+		headerWrap.style.alignItems = "flex-start";
+		headerWrap.style.gap = "1rem";
+		headerWrap.style.marginBottom = "0.5rem";
+
+		const heading = document.createElement("h4");
+		heading.style.margin = "0";
+		
+		if (project.link) {
+			const link = document.createElement("a");
+			link.href = project.link;
+			link.target = "_blank";
+			link.rel = "noopener";
+			link.textContent = project.projectName || "";
+			heading.appendChild(link);
+		} else {
+			heading.textContent = project.projectName || "";
+		}
+		
+		headerWrap.appendChild(heading);
+
+		if (project.githubLink) {
+			const gitBtn = document.createElement("a");
+			gitBtn.href = project.githubLink;
+			gitBtn.className = "icon-link";
+			gitBtn.target = "_blank";
+			gitBtn.rel = "noopener";
+			gitBtn.title = "View Source on GitHub";
+			gitBtn.innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true" width="20" height="20" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.63 22.41c.58.1.8-.25.8-.57v-2.1c-3.26.73-3.95-1.4-3.95-1.4-.54-1.34-1.33-1.7-1.33-1.7-1.09-.72.08-.7.08-.7 1.2.08 1.83 1.2 1.83 1.2 1.07 1.78 2.8 1.26 3.48.96.1-.75.42-1.26.76-1.55-2.6-.28-5.34-1.26-5.34-5.62 0-1.25.47-2.28 1.23-3.08-.13-.3-.53-1.55.12-3.23 0 0 1-.31 3.3 1.18a11.4 11.4 0 0 1 6 0c2.3-1.49 3.29-1.18 3.29-1.18.65 1.68.25 2.93.12 3.23.76.8 1.22 1.83 1.22 3.08 0 4.37-2.74 5.34-5.36 5.62.43.37.82 1.1.82 2.22v3.3c0 .32.21.68.8.57A11.5 11.5 0 0 0 12 .5Z" /></svg>`;
+			gitBtn.style.color = "var(--text-light, #666)";
+			gitBtn.style.display = "inline-flex";
+			gitBtn.style.alignItems = "center";
+			gitBtn.style.transition = "color 0.2s ease";
+			gitBtn.onmouseover = () => gitBtn.style.color = "var(--text-main, #333)";
+			gitBtn.onmouseout = () => gitBtn.style.color = "var(--text-light, #666)";
+			headerWrap.appendChild(gitBtn);
+		}
+
+		card.appendChild(headerWrap);
+
+		if (Array.isArray(project.badges) && project.badges.length > 0) {
+			const badges = document.createElement("div");
+			badges.className = "course-badges";
+			project.badges.forEach((badge) => {
+				const chip = document.createElement("span");
+				chip.className = "chip";
+				chip.textContent = badge;
+				badges.appendChild(chip);
+			});
+			card.appendChild(badges);
+		}
+
+		if (project.description) {
+			const desc = document.createElement("p");
+			desc.textContent = project.description;
+			card.appendChild(desc);
+		}
+
+		el.appendChild(card);
+	});
+};
+
 const applyTranslations = (translations) => {
 	document.querySelectorAll("[data-i18n]").forEach((el) => {
 		const key = el.getAttribute("data-i18n");
@@ -284,6 +361,13 @@ const applyCommon = (common) => {
 		if (!key) return;
 		const certificates = common[key];
 		renderCertificateGroups(el, certificates);
+	});
+
+	document.querySelectorAll("[data-common-projects]").forEach((el) => {
+		const key = el.getAttribute("data-common-projects");
+		if (!key) return;
+		const items = common[key];
+		renderProjects(el, items);
 	});
 };
 
@@ -439,6 +523,29 @@ const inlineCommon = {
 		},
 	],
 	certificatesMore: "See more",
+	projectsTitle: "Projects",
+	projects: [
+		{
+			projectName: "Slide Builder — AI-Powered Presentation Generator",
+			description: "Generate full PowerPoint presentations using a Multi-Agent AI system (17 agents).",
+			badges: ["Python", "Google ADK Development Kit"],
+			id: "slide-builder",
+			link: "slide-builder.html",
+			githubLink: "https://github.com/phattpde140043/Slide_builder",
+			isVisible: true,
+			displayOrder: 1,
+		},
+		{
+			projectName: "Sample Project 2",
+			description: "Description for sample project 2.",
+			badges: ["Docker", "SQL Server"],
+			id: "sample-project-2",
+			link: "sample-project-2.html",
+			githubLink: "https://github.com/your-handle/project-2",
+			isVisible: false,
+			displayOrder: 2,
+		},
+	],
 	skillsTitle: "Technical Skills",
 	skills: ["C# / ASP.NET Core", "REST API Design", "SQL Server", "Docker", "Git"],
 	cvUrl: "assets/cv.pdf",
@@ -488,6 +595,7 @@ const inlineIncludes = {
 
 const inlineTranslations = {
 	en: {
+		languageLabel: "Language",
 		aboutTitle: "About Me",
 		aboutBody:
 			"Backend developer passionate about clean architecture, scalable APIs, and data pipeline systems. Strong foundation in multi-layer architecture and validation logic.",
@@ -502,6 +610,7 @@ const inlineTranslations = {
 		footer: "© 2026 Phat Tran",
 	},
 	vi: {
+		languageLabel: "Ngôn ngữ",
 		aboutTitle: "Giới thiệu",
 		aboutBody:
 			"Lập trình viên backend yêu thích kiến trúc sạch, API mở rộng và hệ thống pipeline dữ liệu. Nền tảng vững về kiến trúc nhiều tầng và logic kiểm tra dữ liệu.",

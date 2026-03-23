@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Project Details | Tran Phu Phat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="layout">
+        <aside id="sidebar" class="sidebar" data-include="sidebar.html"></aside>
+        <main class="content">
+            <div class="container">
+
+                <a class="more-link" href="projects.html" style="display: inline-block; margin-bottom: 2rem;">&larr;
+                    Back to Projects</a>
+
+                <header>
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <h1 id="detail-title" style="margin: 0;">Project: Slide Builder</h1>
+                        <a href="https://github.com/phattpde140043/Slide_builder" class="icon-link" target="_blank" rel="noopener" title="View Source on GitHub" style="color: var(--text-light, #666); transition: color 0.2s ease; display: inline-flex; align-items: center;" onmouseover="this.style.color='var(--text-main, #333)'" onmouseout="this.style.color='var(--text-light, #666)'">
+                            <svg viewBox="0 0 24 24" aria-hidden="true" width="28" height="28" fill="currentColor">
+                                <path d="M12 .5a11.5 11.5 0 0 0-3.63 22.41c.58.1.8-.25.8-.57v-2.1c-3.26.73-3.95-1.4-3.95-1.4-.54-1.34-1.33-1.7-1.33-1.7-1.09-.72.08-.7.08-.7 1.2.08 1.83 1.2 1.83 1.2 1.07 1.78 2.8 1.26 3.48.96.1-.75.42-1.26.76-1.55-2.6-.28-5.34-1.26-5.34-5.62 0-1.25.47-2.28 1.23-3.08-.13-.3-.53-1.55.12-3.23 0 0 1-.31 3.3 1.18a11.4 11.4 0 0 1 6 0c2.3-1.49 3.29-1.18 3.29-1.18.65 1.68.25 2.93.12 3.23.76.8 1.22 1.83 1.22 3.08 0 4.37-2.74 5.34-5.36 5.62.43.37.82 1.1.82 2.22v3.3c0 .32.21.68.8.57A11.5 11.5 0 0 0 12 .5Z" />
+                            </svg>
+                        </a>
+                    </div>
+
+                    <div id="detail-badges" class="course-badges" style="margin-top: 1rem;">
+                        <span class="chip">Python</span>
+                        <span class="chip">Google ADK Development Kit</span>
+                    </div>
+                </header>
+
+                <section class="hero-section" style="margin-top: 2rem; border-radius: 8px;">
+                    <p>Generate full PowerPoint presentations using a Multi-Agent AI system (17 agents).</p>
+
+                    <ul style="margin-bottom: 0; padding-left: 1.5rem; list-style-type: disc;">
+                        <li style="margin-bottom: 0.2rem; display: list-item;">Built a 17-agent AI pipeline (Google ADK)
+                            to generate full PowerPoint decks from a single prompt</li>
+                        <li style="margin-bottom: 0.2rem; display: list-item;">Designed an async task-based system to
+                            process slide sections in parallel</li>
+                        <li style="margin-bottom: 0.2rem; display: list-item;">Implemented clean multi-layer
+                            architecture (Domain → Service → Repository)</li>
+                        <li style="display: list-item;">Delivered end-to-end automation from idea → structured slides →
+                            PPTX output</li>
+                    </ul>
+                </section>
+
+                <section class="project-detail-content" id="detail-content" style="line-height: 1.6;">
+                    <h3 style="margin-top: 0;">Problem</h3>
+                    <p>Creating high-quality presentations is time-consuming and requires multiple skills: research,
+                        structuring, writing, and visual design.</p>
+
+                    <h3 style="margin-top: 2rem;">Solution</h3>
+                    <p>Slide Builder automates the entire workflow using a Multi-Agent AI pipeline, where specialized
+                        agents handle research, content generation, and slide design.</p>
+                    <p>Built with an async task-based architecture, the system generates multiple sections in parallel
+                        and compiles them into a production-ready PowerPoint file.</p>
+
+                    <h3 style="margin-top: 2rem;">Impact</h3>
+                    <ul style="padding-left: 1.5rem; list-style-type: disc;">
+                        <li style="margin-bottom: 0.2rem; display: list-item;">Reduced presentation creation time from
+                            hours to minutes via end-to-end automation</li>
+                        <li style="margin-bottom: 0.2rem; display: list-item;">Increased throughput by enabling parallel
+                            section generation with an async task pipeline</li>
+                        <li style="margin-bottom: 0.2rem; display: list-item;">Maintained consistency and quality
+                            through a multi-agent architecture with specialized roles</li>
+                        <li style="margin-bottom: 0.2rem; display: list-item;">Designed a scalable system capable of
+                            handling large presentations with concurrent processing</li>
+                        <li style="display: list-item;">Built a modular architecture that allows easy extension and
+                            iterative improvement of agents and workflows</li>
+                    </ul>
+                </section>
+
+                <section class="project-role" style="line-height: 1.6; margin-bottom: 2rem;">
+                    <h3 style="margin-top: 0;">My Role</h3>
+                    <p><strong>Solo project</strong> — responsible for end-to-end design and implementation:</p>
+                    <ul style="padding-left: 1.5rem; list-style-type: disc;">
+                        <li style="margin-bottom: 0.2rem; display: list-item;">Designed system architecture and
+                            multi-agent workflow</li>
+                        <li style="margin-bottom: 0.2rem; display: list-item;">Built async backend and task
+                            orchestration system</li>
+                        <li style="display: list-item;">Implemented AI pipeline and PowerPoint generation</li>
+                    </ul>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+
+</html>
