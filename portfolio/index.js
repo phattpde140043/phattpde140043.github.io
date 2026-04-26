@@ -428,7 +428,7 @@ const inlineCommon = {
 			addRessume: true,
 			certificateLink:
 				"https://credentials.databricks.com/6bced44e-c21d-496b-82a4-b5e524ead3cb#acc.8FhWCZjG",
-			certificateImage: "databricks-data-engineer-professional-certificate.png",
+			certificateImage: "databricks-data-engineer-professional-certificate.PNG",
 			courses: [],
 		},
 		{
@@ -437,44 +437,39 @@ const inlineCommon = {
 			badges: ["IBM", "Data Architecture"],
 			addRessume: true,
 			certificateLink: "certificates/ibm-data-architecture-professional-certificate.pdf",
-			certificateImage: "ibm-data-architecture-professional-certificate.png",
+			certificateImage: "ibm-data-architecture-professional-certificate.jpg",
 			courses: [
 				{
 					courseName: "Introduction to Data Engineering",
-					certificateLink: "certificates/courses/introduction-to-data-engineering.pdf",
+					certificateLink: "https://www.coursera.org/account/accomplishments/verify/TRNJTSW1M7E5",
 				},
 				{
 					courseName: "Introduction to Relational Databases (RDBMS)",
-					certificateLink:
-						"certificates/courses/introduction-to-relational-databases-rdbms.pdf",
+					certificateLink: "https://www.coursera.org/account/accomplishments/verify/PDMDA7MRVGW9",
 				},
 				{
 					courseName: "SQL: A Practical Introduction for Querying Databases",
-					certificateLink:
-						"certificates/courses/sql-a-practical-introduction-for-querying-databases.pdf",
+					certificateLink: "https://www.coursera.org/account/accomplishments/verify/AQM9792FADVP",
 				},
 				{
 					courseName: "Hands-on Introduction to Linux Commands and Shell Scripting",
-					certificateLink:
-						"certificates/courses/hands-on-introduction-to-linux-commands-and-shell-scripting.pdf",
+					certificateLink: "https://www.coursera.org/account/accomplishments/verify/6BWLI4EUYYMO",
 				},
 				{
 					courseName: "Relational Database Administration (DBA)",
-					certificateLink:
-						"certificates/courses/relational-database-administration-dba.pdf",
+					certificateLink: "https://www.coursera.org/account/accomplishments/verify/XNZK1TXHJLA1",
 				},
 				{
 					courseName: "Data Warehouse Fundamentals",
-					certificateLink: "certificates/courses/data-warehouse-fundamentals.pdf",
+					certificateLink: "https://www.coursera.org/account/accomplishments/verify/SGI44CMTI45I",
 				},
 				{
 					courseName: "Introduction to NoSQL Databases",
-					certificateLink: "certificates/courses/introduction-to-nosql-databases.pdf",
+					certificateLink: "https://www.coursera.org/account/accomplishments/verify/HNBYJUOSKO30",
 				},
 				{
 					courseName: "ETL and Data Pipelines with Shell, Airflow and Kafka",
-					certificateLink:
-						"certificates/courses/etl-and-data-pipelines-with-shell-airflow-and-kafka.pdf",
+					certificateLink: "https://www.coursera.org/account/accomplishments/verify/HSUN773XX15D",
 				},
 				{
 					courseName: "Introduction to Big Data with Spark and Hadoop",
@@ -483,13 +478,11 @@ const inlineCommon = {
 				},
 				{
 					courseName: "Data Integration, Data Storage, & Data Migration",
-					certificateLink:
-						"certificates/courses/data-integration-data-storage-and-data-migration.pdf",
+					certificateLink: "https://www.coursera.org/account/accomplishments/verify/MN34REAC63YI",
 				},
 				{
 					courseName: "Data Privacy, Security, Governance, Risk and Compliance",
-					certificateLink:
-						"certificates/courses/data-privacy-security-governance-risk-and-compliance.pdf",
+					certificateLink: "https://www.coursera.org/account/accomplishments/verify/N5N4GTO9MWZ7",
 				},
 				{
 					courseName: "Enterprise Data Architecture and Operations",
@@ -500,6 +493,40 @@ const inlineCommon = {
 					courseName: "Data Architect Capstone Project",
 					certificateLink:
 						"certificates/courses/data-architect-capstone-project.pdf",
+				},
+			],
+		},
+		{
+			certificateName: "IBM Machine Learning",
+			groupName: "Machine Learning",
+			badges: ["IBM", "Machine Learning"],
+			addRessume: true,
+			certificateLink: "certificates/ibm-machine-learning.pdf",
+			certificateImage: "ibm-machine-learning.jpg",
+			courses: [
+				{
+					courseName: "Exploratory Data Analysis for Machine Learning",
+					certificateLink: "https://www.coursera.org/account/accomplishments/verify/ZAR3OS7UM7JL",
+				},
+				{
+					courseName: "Supervised Machine Learning: Regression",
+					certificateLink: "https://www.coursera.org/account/accomplishments/verify/NWB2BILYSCYB",
+				},
+				{
+					courseName: "Supervised Machine Learning: Classification",
+					certificateLink: "https://www.coursera.org/account/accomplishments/verify/AQM9792FADVP",
+				},
+				{
+					courseName: "Unsupervised Machine Learning",
+					certificateLink: "https://www.coursera.org/account/accomplishments/verify/6BWLI4EUYYMO",
+				},
+				{
+					courseName: "Deep Learning and Reinforcement Learning",
+					certificateLink: "https://www.coursera.org/account/accomplishments/verify/XNZK1TXHJLA1",
+				},
+				{
+					courseName: "Machine Learning Capstone",
+					certificateLink: "https://www.coursera.org/account/accomplishments/verify/SGI44CMTI45I",
 				},
 			],
 		},
@@ -521,13 +548,50 @@ const inlineCommon = {
 				},
 			],
 		},
+		{
+			certificateName: "Leading People and Teams",
+			groupName: "Soft Skills",
+			badges: ["Leadership"],
+			addRessume: true,
+			certificateLink:
+				"https://www.coursera.org/account/accomplishments/specialization/66RB1FLNAOED",
+			certificateImage: "Leading-People-and-Teams.png",
+			courses: [
+				{
+					courseName: "Inspiring and Motivating Individuals",
+					certificateLink:
+						"https://www.coursera.org/account/accomplishments/verify/6PCUAAFF88SM",
+				},
+				{
+					courseName: "Managing Talent",
+					certificateLink:
+						"https://www.coursera.org/account/accomplishments/verify/O2YBD0QLC3D4",
+				},
+				{
+					courseName: "Influencing People",
+					certificateLink:
+						"https://www.coursera.org/account/accomplishments/verify/0IB4IPI753MH",
+				},
+				{
+					courseName: "Leading Teams",
+					certificateLink:
+						"https://www.coursera.org/account/accomplishments/verify/39NRHLRWYTKF",
+				},
+				{
+					courseName: "Leading People and Teams Capstone",
+					certificateLink:
+						"https://www.coursera.org/account/accomplishments/verify/91GJVKZBS802",
+				},
+			],
+		},
 	],
 	certificatesMore: "See more",
 	projectsTitle: "Projects",
 	projects: [
 		{
 			projectName: "Slide Builder — AI-Powered Presentation Generator",
-			description: "Generate full PowerPoint presentations using a Multi-Agent AI system (17 agents).",
+			description:
+				"Generate full PowerPoint presentations using a Multi-Agent AI system (17 agents).",
 			badges: ["Python", "Google ADK Development Kit"],
 			id: "slide-builder",
 			link: "slide-builder.html",
