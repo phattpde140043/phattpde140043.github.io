@@ -531,20 +531,33 @@ const inlineCommon = {
 			],
 		},
 		{
-			certificateName: "Agile Meets Design Thinking",
+			certificateName: "Agile Development",
 			groupName: "Soft Skills",
 			badges: ["Agile", "Design Thinking"],
 			addRessume: true,
-			certificateLink: "certificates/agile-meets-design-thinking.pdf",
-			certificateImage: "agile-meets-design-thinking.jpg",
+			certificateLink:
+				"https://www.coursera.org/account/accomplishments/specialization/1DC1SFZUF52F",
+			certificateImage: "Agile-Development.png",
 			courses: [
 				{
-					courseName: "Agile Project Planning",
-					certificateLink: "certificates/courses/agile-project-planning.pdf",
+					courseName: "Agile Meets Design Thinking",
+					certificateLink:
+						"https://www.coursera.org/account/accomplishments/verify/P190XT870NIQ",
 				},
 				{
-					courseName: "Design Thinking Foundations",
-					certificateLink: "certificates/courses/design-thinking-foundations.pdf",
+					courseName: "Hypothesis-Driven Development",
+					certificateLink:
+						"https://www.coursera.org/account/accomplishments/verify/7B1YM8MHDEX9",
+				},
+				{
+					courseName: "Product Analytics and AI",
+					certificateLink:
+						"https://www.coursera.org/account/accomplishments/verify/2BHOU3IIHHUU",
+				},
+				{
+					courseName: "Managing an Agile Team",
+					certificateLink:
+						"https://www.coursera.org/account/accomplishments/verify/18S48EEITUEU",
 				},
 			],
 		},
@@ -589,6 +602,18 @@ const inlineCommon = {
 	projectsTitle: "Projects",
 	projects: [
 		{
+			projectName: "Antigravity global configs",
+			description:
+				"Production-grade engineering instructions for AI coding agents.",
+			badges: ["AI Agent", "Agent Instructions"],
+			id: "antigravity-global-configs",
+			link: "antigravity-global-configs.html",
+			githubLink:
+				"https://github.com/phattpde140043/antigravity-global-configs",
+			isVisible: true,
+			displayOrder: 1,
+		},
+		{
 			projectName: "Slide Builder — AI-Powered Presentation Generator",
 			description:
 				"Generate full PowerPoint presentations using a Multi-Agent AI system (17 agents).",
@@ -597,16 +622,6 @@ const inlineCommon = {
 			link: "slide-builder.html",
 			githubLink: "https://github.com/phattpde140043/Slide_builder",
 			isVisible: true,
-			displayOrder: 1,
-		},
-		{
-			projectName: "Sample Project 2",
-			description: "Description for sample project 2.",
-			badges: ["Docker", "SQL Server"],
-			id: "sample-project-2",
-			link: "sample-project-2.html",
-			githubLink: "https://github.com/your-handle/project-2",
-			isVisible: false,
 			displayOrder: 2,
 		},
 	],
@@ -616,8 +631,8 @@ const inlineCommon = {
 	mailUrl: "mailto:phattp1912@gmail.com",
 	email: "phattp1912@gmail.com",
 	location: "Thanh Khe, Da Nang, Viet Nam",
-	githubUrl: "https://github.com/your-handle",
-	linkedinUrl: "https://www.linkedin.com/in/your-handle",
+	githubUrl: "https://github.com/phattpde140043",
+	linkedinUrl: "https://www.linkedin.com/in/trần-phú-phát-2ab3b1185",
 };
 
 const loadCommon = async () => {
