@@ -392,247 +392,272 @@ const loadIncludes = async () => {
 };
 
 const inlineCommon = {
-	name: "Tran Phu Phat",
-	headline: "Backend Engineer focused on Data & AI Systems",
-	pageTitle: "Phat Tran | Backend Developer",
-	sidebarNavTitle: "Sections",
-	navResume: "Resume",
-	navProjects: "Projects",
-	navCertificates: "Certificates",
-	contactTitle: "Contact",
-	contactEmailLabel: "Email",
-	contactLocationLabel: "Location",
-	contactAvailabilityLabel: "Availability",
-	contactAvailabilityValue: "Available for work in Da Nang, Ho Chi Minh",
-	educationTitle: "Education",
-	educationItems: [
+	"name": "Tran Phu Phat",
+	"headline": "Backend Engineer focused on Data & AI Systems",
+	"pageTitle": "Phat Tran | Backend Developer",
+	"sidebarNavTitle": "Sections",
+	"navResume": "Resume",
+	"navProjects": "Projects",
+	"navCertificates": "Certificates",
+	"contactTitle": "Contact",
+	"contactEmailLabel": "Email",
+	"contactLocationLabel": "Location",
+	"contactAvailabilityLabel": "Availability",
+	"contactAvailabilityValue": "Available for work in Da Nang, Ho Chi Minh",
+	"educationTitle": "Education",
+	"cvUrl": "assets/cv.pdf",
+	"mailUrl": "mailto:phattp1912@gmail.com",
+	"email": "phattp1912@gmail.com",
+	"location": "Thanh Khe, Da Nang, Viet Nam",
+	"githubUrl": "https://github.com/phattpde140043",
+	"linkedinUrl": "https://www.linkedin.com/in/trần-phú-phát-2ab3b1185",
+	"educationItems": [
 		{
-			school: "FPT School of Business & Technology",
-			major: "Master Software in AI",
-			period: "2024–present",
-			status: "Studying",
+			"school": "FPT School of Business & Technology",
+			"major": "Master Software in AI",
+			"period": "2024–present",
+			"status": "Studying"
 		},
 		{
-			school: "FPT University",
-			major: "Software Engineering",
-			period: "2023",
-			status: "Graduated",
-		},
+			"school": "FPT University",
+			"major": "Software Engineering",
+			"period": "2023",
+			"status": "Graduated"
+		}
 	],
-	certificatesTitle: "Certificates",
-	certificates: [
+	"projectsTitle": "Projects",
+	"projects": [
 		{
-			certificateName: "Databricks Data Engineer Professional Certificate",
-			groupName: "Data Engineering",
-			badges: ["Databricks", "Data Engineering"],
-			addRessume: true,
-			certificateLink:
-				"https://credentials.databricks.com/6bced44e-c21d-496b-82a4-b5e524ead3cb#acc.8FhWCZjG",
-			certificateImage: "databricks-data-engineer-professional-certificate.PNG",
-			courses: [],
-		},
-		{
-			certificateName: "IBM Data Architecture Professional Certificate",
-			groupName: "Data Engineering",
-			badges: ["IBM", "Data Architecture"],
-			addRessume: true,
-			certificateLink: "certificates/ibm-data-architecture-professional-certificate.pdf",
-			certificateImage: "ibm-data-architecture-professional-certificate.jpg",
-			courses: [
-				{
-					courseName: "Introduction to Data Engineering",
-					certificateLink: "https://www.coursera.org/account/accomplishments/verify/TRNJTSW1M7E5",
-				},
-				{
-					courseName: "Introduction to Relational Databases (RDBMS)",
-					certificateLink: "https://www.coursera.org/account/accomplishments/verify/PDMDA7MRVGW9",
-				},
-				{
-					courseName: "SQL: A Practical Introduction for Querying Databases",
-					certificateLink: "https://www.coursera.org/account/accomplishments/verify/AQM9792FADVP",
-				},
-				{
-					courseName: "Hands-on Introduction to Linux Commands and Shell Scripting",
-					certificateLink: "https://www.coursera.org/account/accomplishments/verify/6BWLI4EUYYMO",
-				},
-				{
-					courseName: "Relational Database Administration (DBA)",
-					certificateLink: "https://www.coursera.org/account/accomplishments/verify/XNZK1TXHJLA1",
-				},
-				{
-					courseName: "Data Warehouse Fundamentals",
-					certificateLink: "https://www.coursera.org/account/accomplishments/verify/SGI44CMTI45I",
-				},
-				{
-					courseName: "Introduction to NoSQL Databases",
-					certificateLink: "https://www.coursera.org/account/accomplishments/verify/HNBYJUOSKO30",
-				},
-				{
-					courseName: "ETL and Data Pipelines with Shell, Airflow and Kafka",
-					certificateLink: "https://www.coursera.org/account/accomplishments/verify/HSUN773XX15D",
-				},
-				{
-					courseName: "Introduction to Big Data with Spark and Hadoop",
-					certificateLink:
-						"certificates/courses/introduction-to-big-data-with-spark-and-hadoop.pdf",
-				},
-				{
-					courseName: "Data Integration, Data Storage, & Data Migration",
-					certificateLink: "https://www.coursera.org/account/accomplishments/verify/MN34REAC63YI",
-				},
-				{
-					courseName: "Data Privacy, Security, Governance, Risk and Compliance",
-					certificateLink: "https://www.coursera.org/account/accomplishments/verify/N5N4GTO9MWZ7",
-				},
-				{
-					courseName: "Enterprise Data Architecture and Operations",
-					certificateLink:
-						"certificates/courses/enterprise-data-architecture-and-operations.pdf",
-				},
-				{
-					courseName: "Data Architect Capstone Project",
-					certificateLink:
-						"certificates/courses/data-architect-capstone-project.pdf",
-				},
+			"projectName": "Glass Box Chat — Explainable AI Interface",
+			"description": "A transparent AI chat system that visualizes reasoning chains and data lineage.",
+			"badges": [
+				"Next.js",
+				"Python",
+				"Claude SDK",
+				"LangGraph",
+				"Explainable AI"
 			],
+			"id": "glass-box-chat",
+			"link": "glass-box-chat.html",
+			"githubLink": "https://github.com/phattpde140043/glass-box-chat",
+			"isVisible": true,
+			"displayOrder": 0
 		},
 		{
-			certificateName: "IBM Machine Learning",
-			groupName: "Machine Learning",
-			badges: ["IBM", "Machine Learning"],
-			addRessume: true,
-			certificateLink: "certificates/ibm-machine-learning.pdf",
-			certificateImage: "ibm-machine-learning.jpg",
-			courses: [
-				{
-					courseName: "Exploratory Data Analysis for Machine Learning",
-					certificateLink: "https://www.coursera.org/account/accomplishments/verify/ZAR3OS7UM7JL",
-				},
-				{
-					courseName: "Supervised Machine Learning: Regression",
-					certificateLink: "https://www.coursera.org/account/accomplishments/verify/NWB2BILYSCYB",
-				},
-				{
-					courseName: "Supervised Machine Learning: Classification",
-					certificateLink: "https://www.coursera.org/account/accomplishments/verify/AQM9792FADVP",
-				},
-				{
-					courseName: "Unsupervised Machine Learning",
-					certificateLink: "https://www.coursera.org/account/accomplishments/verify/6BWLI4EUYYMO",
-				},
-				{
-					courseName: "Deep Learning and Reinforcement Learning",
-					certificateLink: "https://www.coursera.org/account/accomplishments/verify/XNZK1TXHJLA1",
-				},
-				{
-					courseName: "Machine Learning Capstone",
-					certificateLink: "https://www.coursera.org/account/accomplishments/verify/SGI44CMTI45I",
-				},
+			"projectName": "Slide Builder — AI-Powered Presentation Generator",
+			"description": "Generate full PowerPoint presentations using a Multi-Agent AI system (17 agents).",
+			"badges": [
+				"Python",
+				"Google ADK Development Kit"
 			],
+			"id": "slide-builder",
+			"link": "slide-builder.html",
+			"githubLink": "https://github.com/phattpde140043/Slide_builder",
+			"isVisible": true,
+			"displayOrder": 2
 		},
 		{
-			certificateName: "Agile Development",
-			groupName: "Soft Skills",
-			badges: ["Agile", "Design Thinking"],
-			addRessume: true,
-			certificateLink:
-				"https://www.coursera.org/account/accomplishments/specialization/1DC1SFZUF52F",
-			certificateImage: "Agile-Development.png",
-			courses: [
-				{
-					courseName: "Agile Meets Design Thinking",
-					certificateLink:
-						"https://www.coursera.org/account/accomplishments/verify/P190XT870NIQ",
-				},
-				{
-					courseName: "Hypothesis-Driven Development",
-					certificateLink:
-						"https://www.coursera.org/account/accomplishments/verify/7B1YM8MHDEX9",
-				},
-				{
-					courseName: "Product Analytics and AI",
-					certificateLink:
-						"https://www.coursera.org/account/accomplishments/verify/2BHOU3IIHHUU",
-				},
-				{
-					courseName: "Managing an Agile Team",
-					certificateLink:
-						"https://www.coursera.org/account/accomplishments/verify/18S48EEITUEU",
-				},
+			"projectName": "Antigravity global configs",
+			"description": "Production-grade engineering instructions for AI coding agents.",
+			"badges": [
+				"AI Agent",
+				"Agent Instructions"
 			],
-		},
-		{
-			certificateName: "Leading People and Teams",
-			groupName: "Soft Skills",
-			badges: ["Leadership"],
-			addRessume: true,
-			certificateLink:
-				"https://www.coursera.org/account/accomplishments/specialization/66RB1FLNAOED",
-			certificateImage: "Leading-People-and-Teams.png",
-			courses: [
-				{
-					courseName: "Inspiring and Motivating Individuals",
-					certificateLink:
-						"https://www.coursera.org/account/accomplishments/verify/6PCUAAFF88SM",
-				},
-				{
-					courseName: "Managing Talent",
-					certificateLink:
-						"https://www.coursera.org/account/accomplishments/verify/O2YBD0QLC3D4",
-				},
-				{
-					courseName: "Influencing People",
-					certificateLink:
-						"https://www.coursera.org/account/accomplishments/verify/0IB4IPI753MH",
-				},
-				{
-					courseName: "Leading Teams",
-					certificateLink:
-						"https://www.coursera.org/account/accomplishments/verify/39NRHLRWYTKF",
-				},
-				{
-					courseName: "Leading People and Teams Capstone",
-					certificateLink:
-						"https://www.coursera.org/account/accomplishments/verify/91GJVKZBS802",
-				},
-			],
-		},
+			"id": "antigravity-global-configs",
+			"link": "antigravity-global-configs.html",
+			"githubLink": "https://github.com/phattpde140043/antigravity-global-configs",
+			"isVisible": true,
+			"displayOrder": 1
+		}
 	],
-	certificatesMore: "See more",
-	projectsTitle: "Projects",
-	projects: [
+	"certificatesTitle": "Certificates",
+	"certificates": [
 		{
-			projectName: "Antigravity global configs",
-			description:
-				"Production-grade engineering instructions for AI coding agents.",
-			badges: ["AI Agent", "Agent Instructions"],
-			id: "antigravity-global-configs",
-			link: "antigravity-global-configs.html",
-			githubLink:
-				"https://github.com/phattpde140043/antigravity-global-configs",
-			isVisible: true,
-			displayOrder: 1,
+			"certificateName": "Databricks Data Engineer Professional Certificate",
+			"groupName": "Data Engineering",
+			"badges": [
+				"Databricks",
+				"Data Engineering"
+			],
+			"addRessume": true,
+			"certificateLink": "https://credentials.databricks.com/6bced44e-c21d-496b-82a4-b5e524ead3cb#acc.8FhWCZjG",
+			"certificateImage": "databricks-data-engineer-professional-certificate.PNG",
+			"courses": []
 		},
 		{
-			projectName: "Slide Builder — AI-Powered Presentation Generator",
-			description:
-				"Generate full PowerPoint presentations using a Multi-Agent AI system (17 agents).",
-			badges: ["Python", "Google ADK Development Kit"],
-			id: "slide-builder",
-			link: "slide-builder.html",
-			githubLink: "https://github.com/phattpde140043/Slide_builder",
-			isVisible: true,
-			displayOrder: 2,
+			"certificateName": "IBM Data Architecture Professional Certificate",
+			"groupName": "Data Engineering",
+			"badges": [
+				"IBM",
+				"Data Architecture"
+			],
+			"addRessume": true,
+			"certificateLink": "certificates/ibm-data-architecture-professional-certificate.pdf",
+			"certificateImage": "ibm-data-architecture-professional-certificate.jpg",
+			"courses": [
+				{
+					"courseName": "Introduction to Data Engineering",
+					"certificateLink": "https://www.coursera.org/account/accomplishments/verify/TRNJTSW1M7E5"
+				},
+				{
+					"courseName": "Introduction to Relational Databases (RDBMS)",
+					"certificateLink": "https://www.coursera.org/account/accomplishments/verify/PDMDA7MRVGW9"
+				},
+				{
+					"courseName": "SQL: A Practical Introduction for Querying Databases",
+					"certificateLink": "https://www.coursera.org/account/accomplishments/verify/AQM9792FADVP"
+				},
+				{
+					"courseName": "Hands-on Introduction to Linux Commands and Shell Scripting",
+					"certificateLink": "https://www.coursera.org/account/accomplishments/verify/6BWLI4EUYYMO"
+				},
+				{
+					"courseName": "Relational Database Administration (DBA)",
+					"certificateLink": "https://www.coursera.org/account/accomplishments/verify/XNZK1TXHJLA1"
+				},
+				{
+					"courseName": "Data Warehouse Fundamentals",
+					"certificateLink": "https://www.coursera.org/account/accomplishments/verify/SGI44CMTI45I"
+				},
+				{
+					"courseName": "Introduction to NoSQL Databases",
+					"certificateLink": "https://www.coursera.org/account/accomplishments/verify/HNBYJUOSKO30"
+				},
+				{
+					"courseName": "ETL and Data Pipelines with Shell, Airflow and Kafka",
+					"certificateLink": "https://www.coursera.org/account/accomplishments/verify/HSUN773XX15D"
+				},
+				{
+					"courseName": "Introduction to Big Data with Spark and Hadoop",
+					"certificateLink": "https://www.coursera.org/account/accomplishments/verify/R41QZ5GXR477"
+				},
+				{
+					"courseName": "Data Integration, Data Storage, & Data Migration",
+					"certificateLink": "https://www.coursera.org/account/accomplishments/verify/MN34REAC63YI"
+				},
+				{
+					"courseName": "Data Privacy, Security, Governance, Risk and Compliance",
+					"certificateLink": "https://www.coursera.org/account/accomplishments/verify/N5N4GTO9MWZ7"
+				},
+				{
+					"courseName": "Enterprise Data Architecture and Operations",
+					"certificateLink": "https://www.coursera.org/account/accomplishments/verify/95QBWX9H0B3K"
+				},
+				{
+					"courseName": "Data Architect Capstone Project",
+					"certificateLink": "certificates/courses/data-architect-capstone-project.pdf"
+				}
+			]
 		},
+		{
+			"certificateName": "IBM Machine Learning",
+			"groupName": "Machine Learning",
+			"badges": [
+				"IBM",
+				"Machine Learning"
+			],
+			"addRessume": true,
+			"certificateLink": "certificates/ibm-machine-learning.pdf",
+			"certificateImage": "ibm-machine-learning.jpg",
+			"courses": [
+				{
+					"courseName": "Exploratory Data Analysis for Machine Learning",
+					"certificateLink": "https://www.coursera.org/account/accomplishments/verify/ZAR3OS7UM7JL"
+				},
+				{
+					"courseName": "Supervised Machine Learning: Regression",
+					"certificateLink": "https://www.coursera.org/account/accomplishments/verify/NWB2BILYSCYB"
+				},
+				{
+					"courseName": "Supervised Machine Learning: Classification",
+					"certificateLink": "https://www.coursera.org/account/accomplishments/verify/AQM9792FADVP"
+				},
+				{
+					"courseName": "Unsupervised Machine Learning",
+					"certificateLink": "https://www.coursera.org/account/accomplishments/verify/6BWLI4EUYYMO"
+				},
+				{
+					"courseName": "Deep Learning and Reinforcement Learning",
+					"certificateLink": "https://www.coursera.org/account/accomplishments/verify/XNZK1TXHJLA1"
+				},
+				{
+					"courseName": "Machine Learning Capstone",
+					"certificateLink": "https://www.coursera.org/account/accomplishments/verify/SGI44CMTI45I"
+				}
+			]
+		},
+		{
+			"certificateName": "Agile Development",
+			"groupName": "Soft Skills",
+			"badges": [
+				"Agile",
+				"Design Thinking"
+			],
+			"addRessume": true,
+			"certificateLink": "https://www.coursera.org/account/accomplishments/specialization/1DC1SFZUF52F",
+			"certificateImage": "Agile-Development.png",
+			"courses": [
+				{
+					"courseName": "Agile Meets Design Thinking",
+					"certificateLink": "https://www.coursera.org/account/accomplishments/verify/P190XT870NIQ"
+				},
+				{
+					"courseName": "Hypothesis-Driven Development",
+					"certificateLink": "https://www.coursera.org/account/accomplishments/verify/7B1YM8MHDEX9"
+				},
+				{
+					"courseName": "Product Analytics and AI",
+					"certificateLink": "https://www.coursera.org/account/accomplishments/verify/2BHOU3IIHHUU"
+				},
+				{
+					"courseName": "Managing an Agile Team",
+					"certificateLink": "https://www.coursera.org/account/accomplishments/verify/18S48EEITUEU"
+				}
+			]
+		},
+		{
+			"certificateName": "Leading People and Teams",
+			"groupName": "Soft Skills",
+			"badges": [
+				"Leadership"
+			],
+			"addRessume": true,
+			"certificateLink": "https://www.coursera.org/account/accomplishments/specialization/66RB1FLNAOED",
+			"certificateImage": "Leading-People-and-Teams.png",
+			"courses": [
+				{
+					"courseName": "Inspiring and Motivating Individuals",
+					"certificateLink": "https://www.coursera.org/account/accomplishments/verify/6PCUAAFF88SM"
+				},
+				{
+					"courseName": "Managing Talent",
+					"certificateLink": "https://www.coursera.org/account/accomplishments/verify/O2YBD0QLC3D4"
+				},
+				{
+					"courseName": "Influencing People",
+					"certificateLink": "https://www.coursera.org/account/accomplishments/verify/0IB4IPI753MH"
+				},
+				{
+					"courseName": "Leading Teams",
+					"certificateLink": "https://www.coursera.org/account/accomplishments/verify/39NRHLRWYTKF"
+				},
+				{
+					"courseName": "Leading People and Teams Capstone",
+					"certificateLink": "https://www.coursera.org/account/accomplishments/verify/91GJVKZBS802"
+				}
+			]
+		}
 	],
-	skillsTitle: "Technical Skills",
-	skills: ["C# / ASP.NET Core", "REST API Design", "SQL Server", "Docker", "Git"],
-	cvUrl: "assets/cv.pdf",
-	mailUrl: "mailto:phattp1912@gmail.com",
-	email: "phattp1912@gmail.com",
-	location: "Thanh Khe, Da Nang, Viet Nam",
-	githubUrl: "https://github.com/phattpde140043",
-	linkedinUrl: "https://www.linkedin.com/in/trần-phú-phát-2ab3b1185",
+	"certificatesMore": "See more",
+	"projectsTitle": "Projects",
+	"skillsTitle": "Technical Skills",
+	"skills": [
+		"C# / ASP.NET Core",
+		"REST API Design",
+		"SQL Server",
+		"Docker",
+		"Git"
+	]
 };
 
 const loadCommon = async () => {

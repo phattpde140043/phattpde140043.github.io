@@ -35,6 +35,22 @@
     "projectsTitle": "Projects",
     "projects": [
         {
+            "projectName": "Glass Box Chat — Explainable AI Interface",
+            "description": "A transparent AI chat system that visualizes reasoning chains and data lineage.",
+            "badges": [
+                "Next.js",
+                "Python",
+                "Claude SDK",
+                "LangGraph",
+                "Explainable AI"
+            ],
+            "id": "glass-box-chat",
+            "link": "glass-box-chat.html",
+            "githubLink": "https://github.com/phattpde140043/glass-box-chat",
+            "isVisible": true,
+            "displayOrder": 0
+        },
+        {
             "projectName": "Slide Builder — AI-Powered Presentation Generator",
             "description": "Generate full PowerPoint presentations using a Multi-Agent AI system (17 agents).",
             "badges": [
@@ -120,7 +136,7 @@
                 },
                 {
                     "courseName": "Introduction to Big Data with Spark and Hadoop",
-                    "certificateLink": "certificates/courses/introduction-to-big-data-with-spark-and-hadoop.pdf"
+                    "certificateLink": "https://www.coursera.org/account/accomplishments/verify/R41QZ5GXR477"
                 },
                 {
                     "courseName": "Data Integration, Data Storage, & Data Migration",
@@ -132,7 +148,7 @@
                 },
                 {
                     "courseName": "Enterprise Data Architecture and Operations",
-                    "certificateLink": "certificates/courses/enterprise-data-architecture-and-operations.pdf"
+                    "certificateLink": "https://www.coursera.org/account/accomplishments/verify/95QBWX9H0B3K"
                 },
                 {
                     "courseName": "Data Architect Capstone Project",
