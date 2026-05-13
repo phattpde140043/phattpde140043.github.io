@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Architecture - Template</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --bg-card: #ffffff;
+            --accent-blue: #2563eb;
+            --accent-emerald: #059669;
+            --text-main: #0f172a;
+            --text-dim: #475569;
+            --border-color: rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Outfit', sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 120px;
+            position: relative;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            background: rgba(37, 99, 235, 0.08);
+            color: var(--accent-blue);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+            font-weight: 400;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 5rem;
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace;
+            opacity: 0.7;
+        }
+
+        .chart-container {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 4rem 0 2rem;
+            color: var(--text-main);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        /* Pillars Grid */
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 4rem;
+        }
+
+        .pillar-card {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 24px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            transition: all 0.3s ease;
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+
+        .pillar-icon {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .pillar-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--accent-blue);
+        }
+
+        .pillar-card p {
+            font-size: 0.95rem;
+            color: var(--text-dim);
+        }
+
+        /* Tech Grid */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 30px;
+            margin-bottom: 4rem;
+        }
+
+        .tech-card {
+            background: #fff;
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--text-dim);
+            letter-spacing: 1px;
+        }
+
+        .tech-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            border-left: 5px solid var(--accent-emerald);
+            padding-left: 15px;
+        }
+
+        .stage-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .stage-item strong {
+            display: block;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        .stage-item p {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+        }
+
+        /* ADR Table */
+        .adr-table-container {
+            overflow-x: auto;
+            background: #fff;
+            border-radius: 24px;
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            margin-bottom: 5rem;
+        }
+
+        .adr-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .adr-table th {
+            padding: 15px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .adr-table td {
+            padding: 20px 15px;
+            font-size: 0.95rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .status-tag {
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            background: #ecfdf5;
+            color: #059669;
+        }
+
+        .status-tag.target {
+            background: #eff6ff;
+            color: #2563eb;
+        }
+        .overview-card h2 {
+            display: none; /* Hide old title */
+        }
+
+        .overview-card {
+            background: #fff;
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        .overview-card p {
+            font-size: 1rem;
+            color: var(--text-main);
+            margin-bottom: 1.2rem;
+            text-align: justify;
+        }
+
+        .overview-card ul {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .overview-card li {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .overview-card li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--accent-emerald);
+            font-weight: bold;
+        }
+
+        .contribution-card {
+            background: #f8fafc;
+            padding: 35px;
+            border-radius: 24px;
+            border: 1px solid var(--border-color);
+            border-left: 5px solid var(--accent-blue);
+            margin-top: 1rem;
+            margin-bottom: 4rem;
+        }
+
+        .contribution-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+        }
+
+        .contribution-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            list-style: none;
+        }
+
+        .contribution-list li {
+            font-size: 0.95rem;
+            color: var(--text-dim);
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .contribution-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--accent-blue);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="badge" style="background: rgba(37, 99, 235, 0.08); color: #2563eb;">Technical Architecture</div>
+            <h1>Search Platform Architecture</h1>
+            <p class="subtitle">Multi-Tenant Search Infrastructure & Service Orchestration</p>
+        </header>
+
+        <div class="section-title" style="margin-top: 2rem;">System Overview</div>
+        <section class="overview-card">
+            <p>
+                Designed and implemented a distributed search platform for scalable and multi-tenant search workloads. The architecture follows a microservices-based design with clear separation between authentication, gateway routing, orchestration, configuration management, and search runtime services.
+            </p>
+            <p>
+                The platform supports administrators, customers, and external search consumers through isolated access layers and centralized gateway controls. Core workflows such as tenant registration, request orchestration, and runtime configuration are handled independently to improve maintainability and operational scalability.
+            </p>
+            <ul>
+                <li>Azure WAF Front Door and YARP-based gateway routing.</li>
+                <li>Dedicated tenant registration and onboarding workflows.</li>
+                <li>Redis-backed caching for low-latency configuration access.</li>
+                <li>Centralized orchestration for search execution and service coordination.</li>
+                <li>Modular service boundaries designed for cloud-native deployment.</li>
+                <li>Extensible foundation for semantic retrieval and AI-powered search capabilities.</li>
+            </ul>
+            <p style="margin-top: 1.5rem; margin-bottom: 0;">
+                The architecture is built under a <strong>Defense in Depth</strong> and <strong>Zero Trust</strong> model, ensuring that security is enforced at every layer of the system rather than relying on perimeter-based protection. The system is designed for operational scalability, service isolation, and autonomous security enforcement.
+            </p>
+        </section>
+
+        <!-- Role & Contribution Section -->
+        <section class="contribution-card">
+            <h3>Core Engineering Ownership</h3>
+            <p style="margin-bottom: 1.5rem; color: var(--text-dim); font-size: 0.95rem;">
+                Primary engineering ownership included the following platform components:
+            </p>
+            <ul class="contribution-list">
+                <li><strong>Interfaces:</strong> Admin Portal & Registration Page</li>
+                <li><strong>Logic:</strong> Orchestrator & Operational Services</li>
+                <li><strong>Infrastructure:</strong> Configuration & Audit/Logging Services</li>
+            </ul>
+        </section>
+
+        <main>
+            <!-- Architecture Diagram Container -->
+            <div class="section-title" style="margin-top: 0;">Architecture Diagram</div>
+            <div class="chart-container" style="background: none; border: none; padding: 0;">
+                <img src="portfolio/certificates/images/Architect_Diagram.png" 
+                     alt="Architecture Diagram" 
+                     style="width: 100%; height: auto; display: block; border-radius: 16px; box-shadow: 0 30px 60px rgba(0,0,0,0.1); border: 1px solid rgba(0,0,0,0.05);">
+            </div>
+
+            <!-- Section 1: Core Design Principles -->
+            <div class="section-title">Core Design Principles</div>
+            <div class="pillars-grid">
+                <div class="pillar-card">
+                    <div class="pillar-icon">🛡️</div>
+                    <h3>Centralized Governance</h3>
+                    <p>Unified authentication, rate limiting, and tenant validation at the gateway layer to reduce backend complexity and prevent security drift.</p>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-icon">🧩</div>
+                    <h3>Decoupled Orchestration</h3>
+                    <p>Separated orchestration and query transformation from the search engine to enable independent scaling and protocol flexibility.</p>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-icon">⚖️</div>
+                    <h3>Infrastructure Efficiency</h3>
+                    <p>Balanced multi-tenant isolation and infrastructure costs through shard sizing strategies and hot/warm storage tiering.</p>
+                </div>
+            </div>
+
+            <!-- New Section: Security Architecture Principles -->
+            <div class="section-title">Security Architecture Principle</div>
+            <div class="pillars-grid">
+                <div class="pillar-card">
+                    <div class="pillar-icon">🛡️</div>
+                    <h3>Defense in Depth (Core Principle)</h3>
+                    <p>
+                        The system is designed with a layered security model. Each microservice is independently responsible for its own security controls, including auth validation, authorization checks, and input validation, ensuring a breach of one service does not lead to system-wide exploitation.
+                    </p>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-icon">🔐</div>
+                    <h3>Zero Trust Between Services</h3>
+                    <p>
+                        No service is inherently trusted. All inter-service communication is authenticated and validated using secure identity propagation (JWT / service identity), ensuring strict boundary enforcement at runtime.
+                    </p>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-icon">⚠️</div>
+                    <h3>Blast Radius Containment</h3>
+                    <p>
+                        Services are designed to fail independently with strict isolation of data, cache, and execution context to minimize lateral movement in case of a security breach.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Section 2: Admin Portal Architecture (Full Retrospective) -->
+            <div class="section-title">Admin Portal Architecture (Management & Gateway Layer)</div>
+            
+            <div class="pillars-grid">
+                <div class="pillar-card">
+                    <h3>Design Philosophy & Evolution</h3>
+                    <p>Tập trung vào <strong>Centralized Governance</strong>. Thay vì để mỗi Microservice tự xử lý Auth và Rate Limit, chúng tôi đưa các logic này lên lớp Gateway để giảm thiểu <strong>Security Drift</strong> và tối ưu hóa <strong>Operational Economics</strong> (giảm Cognitive Load cho backend teams).</p>
+                </div>
+                <div class="pillar-card">
+                    <h3>Non-Goals & Boundaries</h3>
+                    <p>Hệ thống hoàn toàn <strong>Stateless</strong>. Không thực hiện Query Optimization hay thay thế Service Mesh, mà tập trung bảo vệ North-South traffic và điều phối đa người thuê (Multi-tenant).</p>
+                </div>
+            </div>
+
+            <div class="section-title" style="font-size: 1.2rem; color: var(--accent-blue);">Architecture Decision Records (ADR)</div>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-badge">ADR-001</div>
+                    <h3>Lựa chọn Gateway Engine</h3>
+                    <p>Chọn <strong>YARP (Yet Another Reverse Proxy)</strong> để tích hợp trực tiếp vào ASP.NET pipeline. Cho phép sử dụng chung DI và Middleware, hỗ trợ logic <strong>Reactive Refresh</strong> mà các giải pháp khác khó thực hiện linh hoạt.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-badge">ADR-002</div>
+                    <h3>Chiến lược Caching</h3>
+                    <p>Sử dụng <strong>In-Memory Cache (15s)</strong> cục bộ để đạt <strong>Low-Latency</strong> (p99 < 1ms). Chấp nhận Node-local cache để đổi lấy sự đơn giản và tiết kiệm chi phí ở giai đoạn early scale.</p>
+                </div>
+            </div>
+
+            <div class="section-title" style="font-size: 1.2rem; color: #92400e;">Engineering Challenges & "Scar Tissue"</div>
+            <div class="incident-card">
+                <div class="incident-header">
+                    <span class="incident-icon">🚨</span>
+                    <strong>Incident: Race Condition trong Shared HttpClient</strong>
+                </div>
+                <p>Việc thay đổi Header trực tiếp trên instance HttpClient dùng chung dẫn đến rủi ro rò rỉ Token giữa các người dùng. Giải pháp: Chuyển đổi sang mô hình <strong>Immutable Request Messages</strong> (HttpRequestMessage).</p>
+            </div>
+            <div class="incident-card" style="border-left-color: var(--accent-blue); background: #f0f7ff; border-color: #dbeafe;">
+                <div class="incident-header" style="color: #1e40af;">
+                    <span class="incident-icon">🛡️</span>
+                    <strong>Challenge: Multi-tenant Isolation Guarantee</strong>
+                </div>
+                <p>Nguy cơ rò rỉ dữ liệu Cache nếu Key chỉ dựa trên URL. Giải pháp: Xây dựng <strong>Identity-Aware Cache Key</strong> bằng SHA256 băm từ <code>URL + Payload + Identity Headers</code>.</p>
+            </div>
+
+            <div class="section-title" style="font-size: 1.2rem; color: var(--text-main);">Distributed Systems & Security Model</div>
+            <div class="pillars-grid" style="margin-bottom: 2rem;">
+                <div class="pillar-card">
+                    <h3>Resilience & Overload Shedding</h3>
+                    <p>Hỗ trợ <strong>Reactive Retry</strong> qua Request Buffering. Áp dụng <strong>Overload Shedding</strong> và cơ chế <strong>Backpressure</strong> với chuẩn <strong>RFC 7807</strong> để ngăn chặn Cascading failures.</p>
+                </div>
+                <div class="pillar-card">
+                    <h3>Service-Level Security Controls</h3>
+                    <p>Mỗi Microservice thực hiện các chốt chặn độc lập: authorization policies, input validation, schema enforcement, và rate limiting, không chỉ phụ thuộc vào Gateway.</p>
+                </div>
+                <div class="pillar-card" style="grid-column: span 2;">
+                    <h3>Security Trust Model (Defense in Depth Enforcement)</h3>
+                    <p>Kết hợp giữa Edge-layer validation và Service-level enforcement. Mọi yêu cầu được xác thực tại nhiều lớp: Gateway (JWT/Rate Limit), Service boundary (AuthZ), và Internal logic (Policy checks), triệt tiêu rủi ro khi một lớp bị vượt qua.</p>
+                </div>
+            </div>
+
+            <div class="section-title" style="font-size: 1.2rem; color: var(--text-main);">Performance Targets & Platform Operations</div>
+            <div class="adr-table-container">
+                <table class="adr-table">
+                    <thead>
+                        <tr>
+                            <th>Metric / Platform</th>
+                            <th>Target / Strategy</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Gateway Overhead</td>
+                            <td><strong>p95 latency < 100ms</strong> (YARP Pipeline)</td>
+                        </tr>
+                        <tr>
+                            <td>Availability</td>
+                            <td><strong>99.9% Uptime</strong> (Stateless Kubernetes Scaling)</td>
+                        </tr>
+                        <tr>
+                            <td>Error Consistency</td>
+                            <td><strong>100% RFC 7807</strong> (Unified traceId mapping)</td>
+                        </tr>
+                        <tr>
+                            <td>Dynamic Config</td>
+                            <td>Cloud-Native refresh via Steeltoe (No restart)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+
+        <footer>
+            DISTRIBUTED SEARCH PLATFORM | CLOUD-NATIVE ARCHITECTURE | 2026
+        </footer>
+    </div>
+</body>
+</html>
