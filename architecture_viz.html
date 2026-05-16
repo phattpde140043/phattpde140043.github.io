@@ -449,8 +449,8 @@
                 style="width: 100%; height: auto; display: block; border-radius: 20px; box-shadow: 0 30px 60px rgba(0,0,0,0.08); border: 1px solid var(--border-color);">
         </div>
 
-        <!-- Section 4: Portal Azure Architecture -->
-        <div class="section-title" style="margin-bottom: 0.5rem; border-bottom: none;">Portal Azure Architecture</div>
+        <!-- Section 4: Admin Portal Architecture -->
+        <div class="section-title" style="margin-bottom: 0.5rem; border-bottom: none;">Admin Portal Architecture</div>
         <div class="subtitle"
             style="margin-bottom: 2rem; border-bottom: 2px solid var(--border-color); padding-bottom: 1rem; color: var(--text-main); font-weight: 500; font-size: 1.25rem;">
             Security diagram</div>
@@ -475,144 +475,72 @@
                 style="width: 100%; height: auto; display: block; border-radius: 20px; box-shadow: 0 30px 60px rgba(0,0,0,0.08); border: 1px solid var(--border-color);">
         </div>
 
-        <!-- Section 3: Trade-off Matrix & Deliberate Rejections -->
-        <div class="section-title">Trade-off Matrix & Deliberate Rejections</div>
+        <!-- Section 3: Architecture Decision Records (ADRs) -->
+        <div class="section-title">Architecture Decision Records (ADRs)</div>
+
         <div class="adr-table-container">
-            <table class="adr-table" style="margin-bottom: 2rem;">
+            <table class="adr-table" style="margin-bottom: 3rem;">
                 <thead>
                     <tr>
-                        <th>Architectural Decision</th>
-                        <th>Primary Benefit</th>
-                        <th>Accepted Operational Cost</th>
+                        <th style="width: 20%;">Decision</th>
+                        <th style="width: 25%;">Pain Point</th>
+                        <th style="width: 30%;">Implementation Strategy</th>
+                        <th style="width: 25%;">Trade-off Accepted</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>Node-local Caching</strong></td>
-                        <td>p99 Latency &lt; 1ms (No network hop)</td>
-                        <td>Temporary configuration drift (&lt; 30s)</td>
+                        <td><strong>Request-Level Caching</strong><br><span
+                                style="font-size: 0.8rem; font-weight: normal; color: var(--text-dim); display: inline-block; margin-top: 4px;">Used
+                                short-lived node-local response caching instead of distributed caching for repeated read requests.</span></td>
+                        <td style="color: #92400e; font-size: 0.85rem; line-height: 1.5;">Repeated identical requests created unnecessary downstream load and increased susceptibility to request bursts and lightweight DDoS-style traffic amplification.</td>
+                        <td style="color: var(--accent-blue); font-size: 0.85rem; line-height: 1.5;">Implemented short-lived in-memory response caching with tenant-aware cache partitioning and selective invalidation on POST/PUT/DELETE operations to reduce repeated downstream processing.</td>
+                        <td style="font-size: 0.85rem; line-height: 1.5;">Accepted temporary stale responses for up to 30–60 seconds in exchange for significantly reduced downstream traffic and improved gateway stability.</td>
                     </tr>
                     <tr>
-                        <td><strong>Distributed Identity</strong></td>
-                        <td>Blast radius isolation & containment</td>
-                        <td>Increased policy synchronization complexity</td>
+                        <td><strong>In-Memory Configuration State</strong><br><span
+                                style="font-size: 0.8rem; font-weight: normal; color: var(--text-dim); display: inline-block; margin-top: 4px;">Maintained
+                                local in-memory copies of routing and system configuration instead of performing runtime configuration lookups.</span></td>
+                        <td style="color: #92400e; font-size: 0.85rem; line-height: 1.5;">Runtime configuration lookups introduced unnecessary latency and created operational dependency on centralized configuration services during request processing.</td>
+                        <td style="color: var(--accent-blue); font-size: 0.85rem; line-height: 1.5;">Gateway nodes preload YARP routes and system configuration into memory during startup and periodically refresh state through scheduled reloads and event-driven notifications from the configuration server.</td>
+                        <td style="font-size: 0.85rem; line-height: 1.5;">Accepted temporary configuration drift between nodes in exchange for lower request latency, reduced configuration server load, and improved runtime resilience.</td>
                     </tr>
                     <tr>
-                        <td><strong>In-Memory Routing</strong></td>
-                        <td>Zero-latency route resolution (YARP)</td>
-                        <td>Memory overhead per-tenant route table</td>
+                        <td><strong>Distributed Identity</strong><br><span
+                                style="font-size: 0.8rem; font-weight: normal; color: var(--text-dim); display: inline-block; margin-top: 4px;">Adopted
+                                distributed JWT-based identity propagation using Keycloak instead of centralized
+                                server-side sessions.</span></td>
+                        <td style="color: #92400e; font-size: 0.85rem; line-height: 1.5;">Requests traversed multiple
+                            services and async boundaries, making sticky-session authentication unreliable and difficult
+                            to scale horizontally.</td>
+                        <td style="color: var(--accent-blue); font-size: 0.85rem; line-height: 1.5;">Built a centralized
+                            ASP.NET gateway pipeline using JwtBearer middleware and YARP to validate JWT claims,
+                            propagate tenant context, and enforce cross-service authorization policies.</td>
+                        <td style="font-size: 0.85rem; line-height: 1.5;">Accepted increased complexity in token
+                            lifecycle management, including token expiration, revocation strategy, and distributed
+                            policy synchronization.</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Gateway Resilience Policies</strong><br><span
+                                style="font-size: 0.8rem; font-weight: normal; color: var(--text-dim); display: inline-block; margin-top: 4px;">Applied gateway-level retry and circuit breaker policies using Polly for downstream service communication.</span></td>
+                        <td style="color: #92400e; font-size: 0.85rem; line-height: 1.5;">Transient downstream failures and timeout amplification risked cascading outages across dependent services during traffic spikes.</td>
+                        <td style="color: var(--accent-blue); font-size: 0.85rem; line-height: 1.5;">Implemented centralized resilience policies for YARP outbound proxy communication by integrating Polly into the underlying HTTP client pipeline. Retry policies were selectively applied only to idempotent operations and transient failure scenarios to avoid duplicate side effects during downstream recovery attempts.</td>
+                        <td style="font-size: 0.85rem; line-height: 1.5;">Accepted temporary request rejection and increased retry latency in exchange for preventing cascading failures and improving overall system stability.</td>
                     </tr>
                 </tbody>
             </table>
-
-            <div
-                style="background: #f8fafc; padding: 20px; border-radius: 16px; border: 1px dashed var(--border-color);">
-                <h4 style="font-size: 0.9rem; margin-bottom: 1rem; color: var(--text-main);">Deliberately Rejected
-                    Alternatives</h4>
-                <ul
-                    style="font-size: 0.85rem; color: var(--text-dim); list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
-                    <li><strong>• Rejected Redis:</strong> Network hops introduced jitter & cross-node chatter.</li>
-                    <li><strong>• Rejected Istio:</strong> Excessive sidecar overhead for team of 10.</li>
-                    <li><strong>• Rejected Sync Push:</strong> Chose pull-based recon to eliminate config storms.</li>
-                    <li><strong>• Rejected God-Service:</strong> Split Control/Data plane for scaling economics.</li>
-                </ul>
-            </div>
         </div>
 
+        <!-- Section: Orchestrator Service Architecture -->
+        <div class="section-title">Orchestrator Service Architecture</div>
 
-
-        <!-- Section 5: Critical Engineering Decisions (Technical Ownership) -->
-        <div class="section-title">Critical Engineering Decisions (The "How")</div>
-        <div class="pillars-grid" style="grid-template-columns: repeat(3, 1fr); margin-bottom: 2rem;">
-            <div class="pillar-card" style="border-left: 4px solid var(--accent-blue);">
-                <h3>YARP Middleware</h3>
-                <p style="font-size: 0.85rem;">Designed centralized proxy pipeline in YARP for consistent auth, tenant
-                    resolution, and governance.</p>
-            </div>
-            <div class="pillar-card" style="border-left: 4px solid var(--accent-blue);">
-                <h3>In-Memory Isolation</h3>
-                <p style="font-size: 0.85rem;">Built physical isolation via <strong>tenant-scoped route tables</strong>
-                    in YARP memory to prevent noisy-neighbor effects.</p>
-            </div>
-            <div class="pillar-card" style="border-left: 4px solid var(--accent-blue);">
-                <h3>Resilience Engineering</h3>
-                <p style="font-size: 0.85rem;">Implemented Circuit Breaker and Retry policies to gracefully handle transient faults and downstream service degradation.</p>
-            </div>
-            <div class="pillar-card" style="border-left: 4px solid var(--accent-blue);">
-                <h3>Trace Causality</h3>
-                <p style="font-size: 0.85rem;">Standardized Trace ID propagation across all async boundaries, reducing
-                    **MTTR by ~3x**.</p>
-            </div>
-            <div class="pillar-card" style="border-left: 4px solid var(--accent-blue);">
-                <h3>Stateless Compute</h3>
-                <p style="font-size: 0.85rem;">Enforced zero-state execution at Gateway to maintain horizontal
-                    elasticity under heavy validation loads.</p>
-            </div>
-            <div class="pillar-card" style="border-left: 4px solid var(--accent-blue);">
-                <h3>Operational Economics</h3>
-                <p style="font-size: 0.85rem;">Reduced cross-node chatter by avoiding distributed locking, minimizing
-                    infrastructure cost at scale.</p>
-            </div>
-        </div>
-
-        <!-- Section 5: Observability Contract -->
-        <div class="section-title">Observability Contract (Platform Governance)</div>
-        <div class="pillars-grid" style="grid-template-columns: repeat(2, 1fr); margin-bottom: 4rem;">
-            <div class="pillar-card" style="border-top: 3px solid var(--accent-emerald);">
-                <h4 style="font-size: 0.9rem; margin-bottom: 0.8rem;">Tracing & Logging</h4>
-                <ul style="font-size: 0.8rem; color: var(--text-dim); padding-left: 1rem;">
-                    <li>• TraceId mandatory on all async boundaries.</li>
-                    <li>• TenantId embedded in every structured log entry.</li>
-                    <li>• CorrelationId linked between Admin and Query paths.</li>
-                </ul>
-            </div>
-            <div class="pillar-card" style="border-top: 3px solid var(--accent-emerald);">
-                <h4 style="font-size: 0.9rem; margin-bottom: 0.8rem;">RED Metrics & SLOs</h4>
-                <ul style="font-size: 0.8rem; color: var(--text-dim); padding-left: 1rem;">
-                    <li>• Request Rate, Error Rate, Duration (RED).</li>
-                    <li>• p95 Latency target &lt; 100ms at Gateway edge.</li>
-                    <li>• 99.9% Uptime mandate via stateless redundancy.</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Section 5: Operational Scars -->
-        <div class="section-title" style="color: #92400e;">Operational Evolution (Incident Scars)</div>
-        <div class="incident-card" style="margin-bottom: 0.5rem; border-left: 5px solid #92400e;">
-            <p><strong>Config Drift:</strong> Rolling rollouts previously caused inconsistent states. Evolved to
-                <strong>Version-based Reconciliation</strong> with &lt; 30s convergence target.
-            </p>
-        </div>
-        <div class="incident-card"
-            style="border-left-color: #0369a1; background: #f0f9ff; border-color: #bae6fd; margin-bottom: 0.5rem;">
-            <p><strong>JWT Saturation:</strong> Identity overhead hit **~28% CPU**. Hardened stateless pipeline and
-                optimized token parsing to preserve throughput.</p>
-        </div>
-        <div class="incident-card"
-            style="border-left-color: var(--accent-emerald); background: #f0fdf4; border-color: #dcfce7; margin-bottom: 4rem;">
-            <p><strong>MTTR Ambiguity:</strong> Indistinct downstream failures tripled resolution times. Enforced
-                <strong>Trace Causality</strong> to reduce MTTR by 3x.
-            </p>
-        </div>
-
-        <!-- Section 6: Architectural Invariants -->
-        <div class="section-title">Architectural Invariants (Boundaries)</div>
-        <div class="pillars-grid" style="margin-bottom: 4rem; grid-template-columns: repeat(3, 1fr);">
-            <div class="pillar-card">
-                <h3 style="font-size: 0.9rem; color: var(--text-main);">No Business Logic</h3>
-                <p style="font-size: 0.8rem;">Gateway forbidden from performing business orchestration to prevent logic
-                    leakage.</p>
-            </div>
-            <div class="pillar-card">
-                <h3 style="font-size: 0.9rem; color: var(--text-main);">Stateless Mandate</h3>
-                <p style="font-size: 0.8rem;">Forbidden from persisting tenant state at the edge to ensure horizontal
-                    elasticity.</p>
-            </div>
-            <div class="pillar-card">
-                <h3 style="font-size: 0.9rem; color: var(--text-main);">Zero Trust Boundary</h3>
-                <p style="font-size: 0.8rem;">Internal communication requires explicit tenant context validation at
-                    every hop.</p>
-            </div>
+        <div class="subtitle"
+            style="margin-bottom: 2rem; border-bottom: 2px solid var(--border-color); padding-bottom: 1rem; color: var(--text-main); font-weight: 500; font-size: 1.25rem;">
+            Security diagram</div>
+        <div class="chart-container" style="background: none; border: none; padding: 0; margin-bottom: 5rem;">
+            <img src="portfolio/certificates/images/Orchestrator_diagram.png" alt="Orchestrator Service Architecture Diagram"
+                style="width: 100%; height: auto; display: block; border-radius: 20px; box-shadow: 0 30px 60px rgba(0,0,0,0.08); border: 1px solid var(--border-color);">
         </div>
 
         <footer>
