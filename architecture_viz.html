@@ -453,8 +453,9 @@
         <div class="section-title" style="margin-bottom: 0.5rem; border-bottom: none;">Admin Portal Architecture</div>
         <div class="subtitle"
             style="margin-bottom: 2rem; border-bottom: 2px solid var(--border-color); padding-bottom: 1rem; color: var(--text-main); font-weight: 500; font-size: 1.25rem;">
-            Security diagram</div>
-        <div class="chart-container" style="background: none; border: none; padding: 0; margin-bottom: 5rem;">
+            Gateway Security & Token Flow</div>
+
+        <div class="chart-container" style="background: none; border: none; padding: 0; margin-bottom: 3rem;">
             <img src="portfolio/certificates/images/security_diagram.svg" alt="Portal Azure Architecture Diagram"
                 style="width: 100%; height: auto; display: block; border-radius: 20px; box-shadow: 0 30px 60px rgba(0,0,0,0.08); border: 1px solid var(--border-color);">
         </div>
@@ -475,9 +476,59 @@
                 style="width: 100%; height: auto; display: block; border-radius: 20px; box-shadow: 0 30px 60px rgba(0,0,0,0.08); border: 1px solid var(--border-color);">
         </div>
 
-        <!-- Section 3: Architecture Decision Records (ADRs) -->
-        <div class="section-title">Architecture Decision Records (ADRs)</div>
+        <div style="font-size: 1.1rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--text-main);">Architectural Decisions (Gateway & Edge)</div>
+        <div class="adr-table-container" style="margin-bottom: 5rem;">
+            <table class="adr-table">
+                <thead>
+                    <tr>
+                        <th style="width: 20%;">Decision</th>
+                        <th style="width: 25%;">Pain Point</th>
+                        <th style="width: 30%;">Implementation Strategy</th>
+                        <th style="width: 25%;">Trade-off Accepted</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Distributed Identity</strong><br><span style="font-size: 0.75rem; color: var(--accent-emerald); font-weight: 600; text-transform: uppercase;">Identity</span></td>
+                        <td style="color: #92400e; font-size: 0.85rem; line-height: 1.5;">Requests traversing multiple services made server-side sessions unreliable and difficult to scale.</td>
+                        <td style="color: var(--accent-blue); font-size: 0.85rem; line-height: 1.5;">Adopted JWT-based identity propagation using Keycloak, validating claims at the edge gateway to ensure stateless scalability.</td>
+                        <td style="font-size: 0.85rem; line-height: 1.5;">Accepted complexity in token lifecycle management and revocation synchronization.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Request-Level Caching</strong><br><span style="font-size: 0.75rem; color: var(--accent-emerald); font-weight: 600; text-transform: uppercase;">Performance</span></td>
+                        <td style="color: #92400e; font-size: 0.85rem; line-height: 1.5;">Repeated identical search requests created unnecessary downstream load and increased latency.</td>
+                        <td style="color: var(--accent-blue); font-size: 0.85rem; line-height: 1.5;">Implemented short-lived node-local response caching with tenant-aware partitioning at the proxy level.</td>
+                        <td style="font-size: 0.85rem; line-height: 1.5;">Accepted potential stale data for up to 60 seconds to gain significant stability and throughput.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>In-Memory Config State</strong><br><span style="font-size: 0.75rem; color: var(--accent-emerald); font-weight: 600; text-transform: uppercase;">Consistency</span></td>
+                        <td style="color: #92400e; font-size: 0.85rem; line-height: 1.5;">Runtime configuration lookups created operational dependency on config services and increased request p99.</td>
+                        <td style="color: var(--accent-blue); font-size: 0.85rem; line-height: 1.5;">Gateway preloads routing and system state into memory during startup, utilizing event-driven refresh.</td>
+                        <td style="font-size: 0.85rem; line-height: 1.5;">Accepted temporary configuration drift between nodes during update windows for lower request latency.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Gateway Resilience</strong><br><span style="font-size: 0.75rem; color: var(--accent-emerald); font-weight: 600; text-transform: uppercase;">Reliability</span></td>
+                        <td style="color: #92400e; font-size: 0.85rem; line-height: 1.5;">Transient downstream failures risked cascading outages across dependent services during spikes.</td>
+                        <td style="color: var(--accent-blue); font-size: 0.85rem; line-height: 1.5;">Applied centralized retry and circuit breaker policies using Polly for all outbound proxy communication.</td>
+                        <td style="font-size: 0.85rem; line-height: 1.5;">Accepted increased retry latency and temporary request rejection to prevent total system collapse.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
+
+        <!-- Section 5: Orchestrator Service Architecture -->
+        <div class="section-title" style="margin-bottom: 0.5rem;">Orchestrator Service Architecture</div>
+        <div class="subtitle"
+            style="margin-bottom: 2rem; border-bottom: 2px solid var(--border-color); padding-bottom: 1rem; color: var(--text-main); font-weight: 500; font-size: 1.25rem;">
+            Internal Logic & Multi-tenant Isolation</div>
+
+        <div class="chart-container" style="background: none; border: none; padding: 0; margin-bottom: 3rem;">
+            <img src="portfolio/certificates/images/Orchestrator_diagram.png" alt="Orchestrator Service Architecture Diagram"
+                style="width: 100%; height: auto; display: block; border-radius: 20px; box-shadow: 0 30px 60px rgba(0,0,0,0.08); border: 1px solid var(--border-color);">
+        </div>
+
+        <div style="font-size: 1.1rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--text-main);">Architectural Decisions (Service Logic)</div>
         <div class="adr-table-container">
             <table class="adr-table" style="margin-bottom: 3rem;">
                 <thead>
@@ -490,57 +541,246 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>Request-Level Caching</strong><br><span
-                                style="font-size: 0.8rem; font-weight: normal; color: var(--text-dim); display: inline-block; margin-top: 4px;">Used
-                                short-lived node-local response caching instead of distributed caching for repeated read requests.</span></td>
-                        <td style="color: #92400e; font-size: 0.85rem; line-height: 1.5;">Repeated identical requests created unnecessary downstream load and increased susceptibility to request bursts and lightweight DDoS-style traffic amplification.</td>
-                        <td style="color: var(--accent-blue); font-size: 0.85rem; line-height: 1.5;">Implemented short-lived in-memory response caching with tenant-aware cache partitioning and selective invalidation on POST/PUT/DELETE operations to reduce repeated downstream processing.</td>
-                        <td style="font-size: 0.85rem; line-height: 1.5;">Accepted temporary stale responses for up to 30–60 seconds in exchange for significantly reduced downstream traffic and improved gateway stability.</td>
+                        <td><strong>Zero-Trust Tenant Scoping</strong><br><span style="font-size: 0.75rem; color: var(--accent-emerald); font-weight: 600; text-transform: uppercase;">Isolation</span></td>
+                        <td style="color: #92400e; font-size: 0.85rem; line-height: 1.5;">Shared OpenSearch clusters introduced high risks of accidental cross-tenant data exposure through broad queries.</td>
+                        <td style="color: var(--accent-blue); font-size: 0.85rem; line-height: 1.5;">Enforced infrastructure-level `Tenant.keyword` injection in every DSL query, ensuring strict logical partitioning at the core retrieval layer.</td>
+                        <td style="font-size: 0.85rem; line-height: 1.5;">Accepted higher DSL complexity to guarantee absolute multi-tenant data safety.</td>
                     </tr>
                     <tr>
-                        <td><strong>In-Memory Configuration State</strong><br><span
-                                style="font-size: 0.8rem; font-weight: normal; color: var(--text-dim); display: inline-block; margin-top: 4px;">Maintained
-                                local in-memory copies of routing and system configuration instead of performing runtime configuration lookups.</span></td>
-                        <td style="color: #92400e; font-size: 0.85rem; line-height: 1.5;">Runtime configuration lookups introduced unnecessary latency and created operational dependency on centralized configuration services during request processing.</td>
-                        <td style="color: var(--accent-blue); font-size: 0.85rem; line-height: 1.5;">Gateway nodes preload YARP routes and system configuration into memory during startup and periodically refresh state through scheduled reloads and event-driven notifications from the configuration server.</td>
-                        <td style="font-size: 0.85rem; line-height: 1.5;">Accepted temporary configuration drift between nodes in exchange for lower request latency, reduced configuration server load, and improved runtime resilience.</td>
+                        <td><strong>Application-Level Scoped Check</strong><br><span style="font-size: 0.75rem; color: var(--accent-emerald); font-weight: 600; text-transform: uppercase;">Security Validation</span></td>
+                        <td style="color: #92400e; font-size: 0.85rem; line-height: 1.5;">Gateway-only filtering was insufficient to prevent IDOR-style attacks on internal resource identifiers.</td>
+                        <td style="color: var(--accent-blue); font-size: 0.85rem; line-height: 1.5;">Implemented `IScopedRequestValidator` to cross-reference JWT tenant claims with resource owner metadata for every business operation.</td>
+                        <td style="font-size: 0.85rem; line-height: 1.5;">Accepted minor validation latency for robust defense-in-depth security.</td>
                     </tr>
                     <tr>
-                        <td><strong>Distributed Identity</strong><br><span
-                                style="font-size: 0.8rem; font-weight: normal; color: var(--text-dim); display: inline-block; margin-top: 4px;">Adopted
-                                distributed JWT-based identity propagation using Keycloak instead of centralized
-                                server-side sessions.</span></td>
-                        <td style="color: #92400e; font-size: 0.85rem; line-height: 1.5;">Requests traversed multiple
-                            services and async boundaries, making sticky-session authentication unreliable and difficult
-                            to scale horizontally.</td>
-                        <td style="color: var(--accent-blue); font-size: 0.85rem; line-height: 1.5;">Built a centralized
-                            ASP.NET gateway pipeline using JwtBearer middleware and YARP to validate JWT claims,
-                            propagate tenant context, and enforce cross-service authorization policies.</td>
-                        <td style="font-size: 0.85rem; line-height: 1.5;">Accepted increased complexity in token
-                            lifecycle management, including token expiration, revocation strategy, and distributed
-                            policy synchronization.</td>
+                        <td><strong>Tenant Context Propagation</strong><br><span style="font-size: 0.75rem; color: var(--accent-emerald); font-weight: 600; text-transform: uppercase;">Context Propagation</span></td>
+                        <td style="color: #92400e; font-size: 0.85rem; line-height: 1.5;">Manual propagation of tenant identifiers created excessive boilerplate and increased risk of logic leaks.</td>
+                        <td style="color: var(--accent-blue); font-size: 0.85rem; line-height: 1.5;">Adopted a Scoped `ITenantContext` pattern, automatically propagating identity from the pipeline to deep infrastructure layers.</td>
+                        <td style="font-size: 0.85rem; line-height: 1.5;">Accepted dependency on scoped context services in the data layer.</td>
                     </tr>
-
                     <tr>
-                        <td><strong>Gateway Resilience Policies</strong><br><span
-                                style="font-size: 0.8rem; font-weight: normal; color: var(--text-dim); display: inline-block; margin-top: 4px;">Applied gateway-level retry and circuit breaker policies using Polly for downstream service communication.</span></td>
-                        <td style="color: #92400e; font-size: 0.85rem; line-height: 1.5;">Transient downstream failures and timeout amplification risked cascading outages across dependent services during traffic spikes.</td>
-                        <td style="color: var(--accent-blue); font-size: 0.85rem; line-height: 1.5;">Implemented centralized resilience policies for YARP outbound proxy communication by integrating Polly into the underlying HTTP client pipeline. Retry policies were selectively applied only to idempotent operations and transient failure scenarios to avoid duplicate side effects during downstream recovery attempts.</td>
-                        <td style="font-size: 0.85rem; line-height: 1.5;">Accepted temporary request rejection and increased retry latency in exchange for preventing cascading failures and improving overall system stability.</td>
+                        <td><strong>Lightweight Internal Auth</strong><br><span style="font-size: 0.75rem; color: var(--accent-emerald); font-weight: 600; text-transform: uppercase;">Internal Trust</span></td>
+                        <td style="color: #92400e; font-size: 0.85rem; line-height: 1.5;">Internal orchestration traffic in small environments required a trust boundary without the complexity of a full service mesh.</td>
+                        <td style="color: var(--accent-blue); font-size: 0.85rem; line-height: 1.5;">Implemented a shared secret header validation for service-to-service calls as a lightweight internal trust mechanism.</td>
+                        <td style="font-size: 0.85rem; line-height: 1.5;">Accepted limited protection against advanced insider threats vs full mTLS.</td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
-        <!-- Section: Orchestrator Service Architecture -->
-        <div class="section-title">Orchestrator Service Architecture</div>
-
+        <!-- Section 6: Production Operations & Reliability -->
+        <div class="section-title">Production Operations & Reliability</div>
         <div class="subtitle"
-            style="margin-bottom: 2rem; border-bottom: 2px solid var(--border-color); padding-bottom: 1rem; color: var(--text-main); font-weight: 500; font-size: 1.25rem;">
-            Security diagram</div>
-        <div class="chart-container" style="background: none; border: none; padding: 0; margin-bottom: 5rem;">
-            <img src="portfolio/certificates/images/Orchestrator_diagram.png" alt="Orchestrator Service Architecture Diagram"
-                style="width: 100%; height: auto; display: block; border-radius: 20px; box-shadow: 0 30px 60px rgba(0,0,0,0.08); border: 1px solid var(--border-color);">
+            style="margin-bottom: 3rem; border-bottom: 2px solid var(--border-color); padding-bottom: 1rem; color: var(--text-main); font-weight: 500; font-size: 1.25rem;">
+            Designing for Failure & Observability at Scale</div>
+
+        <div class="pillars-grid">
+            <!-- Observability Card -->
+            <div class="pillar-card">
+                <div class="pillar-icon">📊</div>
+                <h3 style="color: var(--accent-emerald);">Observability Pipeline</h3>
+                <p>Implemented <strong>OpenTelemetry</strong> standards with unified <strong>Correlation IDs</strong> across all search flows. This enables distributed tracing across async boundaries, reducing <strong>MTTR</strong> by providing immediate request causality in centralized logs.</p>
+            </div>
+
+            <!-- Reliability Card -->
+            <div class="pillar-card">
+                <div class="pillar-icon">🛡️</div>
+                <h3 style="color: var(--accent-emerald);">Failure Containment</h3>
+                <p>Designed with a "Fail-Fast" mindset using <strong>Bulkhead Isolation</strong> and <strong>Circuit Breakers</strong>. By establishing strict timeout boundaries, the system prevents transient downstream delays from cascading into platform-wide outages.</p>
+            </div>
+
+            <!-- Scaling Card -->
+            <div class="pillar-card">
+                <div class="pillar-icon">🚀</div>
+                <h3 style="color: var(--accent-emerald);">Runtime Governance</h3>
+                <p>Engineered for <strong>Stateless Horizontal Scaling</strong>. System health is managed via granular <strong>Liveness/Readiness probes</strong>, ensuring seamless Rolling Updates and cluster stability during traffic surges.</p>
+            </div>
+        </div>
+
+        <div style="font-size: 1.1rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--text-main);">Operational Capability Matrix</div>
+        <div class="adr-table-container" style="margin-bottom: 3rem;">
+            <table class="adr-table">
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">Operational Capability</th>
+                        <th style="width: 50%;">Production Strategy</th>
+                        <th style="width: 25%;">System Impact</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Distributed Tracing</strong></td>
+                        <td style="color: var(--accent-blue);">OpenTelemetry + W3C Traceparent propagation across service boundaries.</td>
+                        <td><span class="status-tag">High Visibility</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Failure Isolation</strong></td>
+                        <td style="color: var(--accent-blue);">Circuit Breakers + Timeout boundaries at all I/O integration points.</td>
+                        <td><span class="status-tag">Cascading Prevention</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Incident Debugging</strong></td>
+                        <td style="color: var(--accent-blue);">Structured Centralized Logging (Serilog) with indexed Correlation IDs.</td>
+                        <td><span class="status-tag">Lower MTTR</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Health Monitoring</strong></td>
+                        <td style="color: var(--accent-blue);">Granular Health Probes monitoring downstream connectivity & memory pressure.</td>
+                        <td><span class="status-tag">Zero-Downtime</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Resource Safety</strong></td>
+                        <td style="color: var(--accent-blue);">End-to-end CancellationToken propagation for cluster-wide resource reclamation.</td>
+                        <td><span class="status-tag">Cost Efficiency</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div style="font-size: 1.1rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--text-main);">Failure Scenario Handling (Antifragility)</div>
+        <div class="adr-table-container">
+            <table class="adr-table" style="margin-bottom: 2rem;">
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">Failure Source</th>
+                        <th style="width: 50%;">System Behavior & Mitigation</th>
+                        <th style="width: 25%;">Resilience Strategy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Config Service Down</strong></td>
+                        <td style="color: #92400e;">Gateways continue serving traffic using stale configuration from local memory.</td>
+                        <td><span class="status-tag" style="background: #fff7ed; color: #9a3412;">Stateless Fallback</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>OpenSearch Latency</strong></td>
+                        <td style="color: #92400e;">Circuit breaker opens to prevent thread exhaustion; search returns degraded results.</td>
+                        <td><span class="status-tag" style="background: #fff7ed; color: #9a3412;">Bulkhead Isolation</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Redis Cache Failure</strong></td>
+                        <td style="color: #92400e;">Transparent fallback to direct OpenSearch query with throttled retry logic.</td>
+                        <td><span class="status-tag" style="background: #fff7ed; color: #9a3412;">Graceful Degradation</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Keycloak Spikes</strong></td>
+                        <td style="color: #92400e;">JWT validation persists using locally cached JWKS public keys.</td>
+                        <td><span class="status-tag" style="background: #fff7ed; color: #9a3412;">Identity Resilience</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Secret Mismatch</strong></td>
+                        <td style="color: #92400e;">Immediate request rejection with high-priority security audit logging.</td>
+                        <td><span class="status-tag" style="background: #fff7ed; color: #9a3412;">Zero-Trust Defence</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Section 7: Internal Service Architecture & Governance -->
+        <div class="section-title">Internal Service Architecture & Governance</div>
+        <div class="subtitle"
+            style="margin-bottom: 3rem; border-bottom: 2px solid var(--border-color); padding-bottom: 1rem; color: var(--text-main); font-weight: 500; font-size: 1.25rem;">
+            Modular Boundaries, Dependency Rules & Cross-Cutting Enforcement</div>
+
+        <div class="pillars-grid" style="grid-template-columns: repeat(2, 1fr);">
+            <!-- Dependency Direction Card -->
+            <div class="tech-card">
+                <div class="tech-badge">Clean Architecture</div>
+                <h3>Dependency Governance</h3>
+                <div class="stage-item">
+                    <strong>Rule: Dependencies Always Point Inward</strong>
+                    <p>Enforced a strict unidirectional dependency flow where the core Domain contains zero external dependencies. This ensures that business invariants are protected from infrastructure volatility (OpenSearch SDKs, Keycloak, or Redis changes).</p>
+                </div>
+                <div class="stage-item">
+                    <strong>Modular Boundaries</strong>
+                    <p>System components are decoupled into high-cohesion modules, allowing teams to evolve orchestration logic and indexing strategies independently, scaling the organization without deployment contention.</p>
+                </div>
+            </div>
+
+            <!-- Ownership Card -->
+            <div class="tech-card">
+                <div class="tech-badge">Ownership</div>
+                <h3>Data & Flow Ownership</h3>
+                <div class="stage-item">
+                    <strong>Gateway Level</strong>
+                    <p>Owns distributed identity validation, request-level caching policies, and initial routing refresh.</p>
+                </div>
+                <div class="stage-item">
+                    <strong>Orchestrator Level</strong>
+                    <p>Owns tenant context resolution, resource-scoped validation (IDOR defense), and retry/circuit-breaker boundaries.</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="font-size: 1.1rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1.5rem; color: var(--text-main);">Dependency Rule Matrix</div>
+        <div class="adr-table-container" style="margin-bottom: 3rem;">
+            <table class="adr-table">
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">Module Layer</th>
+                        <th style="width: 45%;">Core Responsibility</th>
+                        <th style="width: 30%;">Allowed Dependencies</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Domain Layer</strong></td>
+                        <td>Business invariants & core search contracts.</td>
+                        <td><span class="status-tag" style="background: #fef2f2; color: #991b1b;">None</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Application Layer</strong></td>
+                        <td>Use-case orchestration & flow coordination.</td>
+                        <td><span class="status-tag">Domain</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Infrastructure</strong></td>
+                        <td>External SDKs (OpenSearch, Redis, SQL).</td>
+                        <td><span class="status-tag">Domain</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>API / Presentation</strong></td>
+                        <td>Transport, AuthZ, & Scoped Validation.</td>
+                        <td><span class="status-tag">Application</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div style="font-size: 1.1rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--text-main);">Cross-Cutting Governance Matrix</div>
+        <div class="adr-table-container">
+            <table class="adr-table" style="margin-bottom: 2rem;">
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">Concern</th>
+                        <th style="width: 45%;">Enforcement Strategy</th>
+                        <th style="width: 30%;">Ownership</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Tenant Isolation</strong></td>
+                        <td style="color: var(--accent-blue);">Scoped `ITenantContext` injected via Middleware.</td>
+                        <td>Infrastructure Pipeline</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Correlation Tracing</strong></td>
+                        <td style="color: var(--accent-blue);">Unified Header propagation in Middleware.</td>
+                        <td>Application Core</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Reliability (Retries)</strong></td>
+                        <td style="color: var(--accent-blue);">Centralized Polly Policy Registries.</td>
+                        <td>Infrastructure Adapters</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Exception Mapping</strong></td>
+                        <td style="color: var(--accent-blue);">Global Exception Middleware (RFC 7807).</td>
+                        <td>API Layer</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
         <footer>
