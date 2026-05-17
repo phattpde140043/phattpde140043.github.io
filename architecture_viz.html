@@ -694,8 +694,77 @@
             </div>
         </div>
 
+        <!-- Section 8: Engineering Reflection -->
+        <div class="section-title">Engineering Reflection</div>
+
+        <p style="margin-bottom: 2.5rem; color: var(--text-dim); font-size: 1.05rem; line-height: 1.7; text-align: left;">
+            This search platform was intentionally designed around <strong>operational simplicity, predictable failure states, and resilient tenant isolation</strong> under real-world infrastructure constraints, rather than theoretical architectural perfection. 
+        </p>
+
+        <div class="pillars-grid" style="grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 3rem;">
+            <!-- Trade-offs Card -->
+            <div class="tech-card" style="margin-bottom: 0;">
+                <div class="tech-badge" style="background: rgba(37, 99, 235, 0.08); color: #2563eb;">Trade-offs</div>
+                <h3>Deliberate Decisions</h3>
+                <div class="stage-item">
+                    <strong>Eventual Consistency</strong>
+                    <p>Accepted a transient 30-60s configuration drift across nodes to prioritize fast local lookups and avoid distributed locks.</p>
+                </div>
+                <div class="stage-item">
+                    <strong>Logical Partitioning</strong>
+                    <p>Enforced multi-tenant isolation via dynamic query filter injection on a shared cluster to control infrastructure hosting costs.</p>
+                </div>
+                <div class="stage-item">
+                    <strong>Lightweight Edge Trust</strong>
+                    <p>Substituted heavy service mesh topologies with gateway-injected shared secret headers restricted within private subnets.</p>
+                </div>
+            </div>
+
+            <!-- Out of Scope Card -->
+            <div class="tech-card" style="margin-bottom: 0;">
+                <div class="tech-badge" style="background: rgba(220, 38, 38, 0.08); color: #dc2626;">Scope Boundaries</div>
+                <h3>Out of Scope</h3>
+                <div class="stage-item">
+                    <strong>Multi-Region Active-Active</strong>
+                    <p>Excluded cross-region multi-master synchronization to keep deployment zones deterministic and simple.</p>
+                </div>
+                <div class="stage-item">
+                    <strong>Real-time Cache Invalidation</strong>
+                    <p>Omitted complex cache invalidation brokers, relying on local node time-to-live bounds to maintain decoupling.</p>
+                </div>
+                <div class="stage-item">
+                    <strong>Kubernetes Cluster Scaling</strong>
+                    <p>Excluded heavy Kubernetes scaling controllers and Helm operators during this sandbox and validation stage.</p>
+                </div>
+            </div>
+
+            <!-- Future Roadmap Card -->
+            <div class="tech-card" style="margin-bottom: 0;">
+                <div class="tech-badge" style="background: rgba(5, 150, 105, 0.08); color: #059669;">Evolution</div>
+                <h3>System Roadmap</h3>
+                <div class="stage-item">
+                    <strong>Adaptive Rate Limiting</strong>
+                    <p>Adding per-tenant search query aggregation throttling at the gateway layer to prevent cluster noisy-neighbor degradation.</p>
+                </div>
+                <div class="stage-item">
+                    <strong>Distributed Cache Bus</strong>
+                    <p>Planning a Redis pub-sub configuration refresh channel to instantly trigger local node cache invalidation upon updates.</p>
+                </div>
+                <div class="stage-item">
+                    <strong>Async Indexing Pipelines</strong>
+                    <p>Expanding the C# background worker queue pattern to move heavy document mutations and synonym updates off the search HTTP hot path.</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="background: rgba(37, 99, 235, 0.04); border-left: 4px solid var(--accent-blue); padding: 1.5rem; border-radius: 4px; margin-bottom: 4rem; text-align: left;">
+            <p style="font-size: 1.05rem; color: var(--text-main); font-style: italic; line-height: 1.6; margin: 0;">
+                "The goal was not to build a theoretically perfect distributed system, but to design a pragmatic search platform that balances high availability, operational simplicity, and strict logical tenant isolation under realistic engineering constraints."
+            </p>
+        </div>
+
         <footer>
-            SEARCH PLATFORM ARCHITECTURE | 2026
+            Distributed Search Platform • Multi-Tenant Backend Architecture • Designed for Isolation & Operational Simplicity
         </footer>
     </div>
 </body>
