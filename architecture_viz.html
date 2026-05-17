@@ -397,34 +397,31 @@
             <div
                 style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.2rem; text-align: center; margin-bottom: 1.5rem;">
                 <div>
-                    <div style="font-size: 1.4rem; font-weight: 700; color: var(--accent-blue);">~3.5k</div>
-                    <div style="font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase;">Peak RPS</div>
+                    <div style="font-size: 1.4rem; font-weight: 700; color: var(--accent-blue);">~1.2k</div>
+                    <div style="font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase;">RPS (Load Tested)</div>
                 </div>
                 <div>
-                    <div style="font-size: 1.4rem; font-weight: 700; color: var(--accent-blue);">50+</div>
-                    <div style="font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase;">Tenants</div>
+                    <div style="font-size: 1.4rem; font-weight: 700; color: var(--accent-blue);">25+</div>
+                    <div style="font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase;">Config Scopes</div>
                 </div>
                 <div>
-                    <div style="font-size: 1.4rem; font-weight: 700; color: var(--accent-blue);">&lt; 30s</div>
-                    <div style="font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase;">Recon Window
-                    </div>
+                    <div style="font-size: 1.4rem; font-weight: 700; color: var(--accent-blue);">~30s</div>
+                    <div style="font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase;">Config Drift Lag</div>
                 </div>
                 <div>
-                    <div style="font-size: 1.4rem; font-weight: 700; color: var(--accent-blue);">p99 &lt; 1ms</div>
-                    <div style="font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase;">Config Lookup
-                    </div>
+                    <div style="font-size: 1.4rem; font-weight: 700; color: var(--accent-blue);">&lt; 2ms</div>
+                    <div style="font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase;">Memory Cache Lookup</div>
                 </div>
                 <div>
-                    <div style="font-size: 1.4rem; font-weight: 700; color: var(--accent-blue);">~3x</div>
-                    <div style="font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase;">MTTR Reduc</div>
+                    <div style="font-size: 1.4rem; font-weight: 700; color: var(--accent-blue);">Rolling</div>
+                    <div style="font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase;">Soft Refresh</div>
                 </div>
             </div>
             <p
-                style="font-size: 0.95rem; color: var(--text-dim); line-height: 1.6; text-align: center; margin-bottom: 1rem;">
-                A distributed Search Platform backbone orchestrating secure, multi-tenant workloads with
-                <strong>autonomous state reconciliation</strong> and <strong>zero-latency proxying</strong>.
+                style="font-size: 0.95rem; color: var(--text-dim); line-height: 1.6; text-align: center; margin-bottom: 1.5rem;">
+                A distributed multi-tenant search platform designed for low-latency routing, autonomous configuration reconciliation, and resilient service orchestration.
             </p>
-            <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
+            <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 2rem;">
                 <span
                     style="background: #eff6ff; color: #1e40af; padding: 4px 10px; border-radius: 6px; font-size: 0.7rem; font-weight: 600; border: 1px solid #bfdbfe;">.NET
                     8</span>
@@ -437,6 +434,34 @@
                     style="background: #f5f3ff; color: #5b21b6; padding: 4px 10px; border-radius: 6px; font-size: 0.7rem; font-weight: 600; border: 1px solid #ddd6fe;">Steeltoe</span>
                 <span
                     style="background: #fdf2f8; color: #9d174d; padding: 4px 10px; border-radius: 6px; font-size: 0.7rem; font-weight: 600; border: 1px solid #fbcfe8;">OpenTelemetry</span>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2rem; margin-top: 2rem; border-top: 1px solid var(--border-color); padding-top: 2rem; text-align: left;">
+                <div>
+                    <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-main); text-transform: uppercase; letter-spacing: 0.5px;">Executive Summary</h3>
+                    <div style="font-size: 0.9rem; color: var(--text-dim);">
+                        <p style="margin-bottom: 0.8rem; text-align: left;"><strong style="color: var(--text-main);">Target Position:</strong> Backend Engineer — Distributed Systems & Platform Infrastructure</p>
+                        <p style="margin-bottom: 0.8rem; text-align: left;"><strong style="color: var(--text-main);">Core Engineering Areas:</strong> Gateway Routing, Tenant Isolation, Configuration Synchronization, and Reliability Engineering.</p>
+                        <p style="margin-bottom: 0.8rem; text-align: left;"><strong style="color: var(--text-main);">Technical & Operational Status:</strong> A functional platform prototype built and validated under load, utilizing YARP routing, logical tenant keyword indexing, and local in-memory configuration synchronization to eliminate direct database lookups.</p>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-main); text-transform: uppercase; letter-spacing: 0.5px;">Engineering Ownership</h3>
+                    <ul style="display: flex; flex-direction: column; gap: 8px; list-style: none; margin-top: 0; padding-left: 0;">
+                        <li style="font-size: 0.9rem; color: var(--text-dim); padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; top: 0; color: var(--accent-emerald); font-weight: bold;">✓</span>
+                            <strong>Gateway Redesign:</strong> Contributed to YARP-based gateway redesign, eliminating redundant downstream calls and implementing node-local caching.
+                        </li>
+                        <li style="font-size: 0.9rem; color: var(--text-dim); padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; top: 0; color: var(--accent-emerald); font-weight: bold;">✓</span>
+                            <strong>Tenant Isolation:</strong> Engineered the <code>IScopedRequestValidator</code> pipeline and automatic DSL query rewrites via <code>Tenant.keyword</code>.
+                        </li>
+                        <li style="font-size: 0.9rem; color: var(--text-dim); padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; top: 0; color: var(--accent-emerald); font-weight: bold;">✓</span>
+                            <strong>Observability & Resilience:</strong> Implemented end-to-end W3C <code>traceparent</code> tracing, Polly retry boundaries, and cancellation propagation.
+                        </li>
+                    </ul>
+                </div>
             </div>
         </section>
 
@@ -519,9 +544,6 @@
 
         <!-- Section 5: Orchestrator Service Architecture -->
         <div class="section-title" style="margin-bottom: 0.5rem;">Orchestrator Service Architecture</div>
-        <div class="subtitle"
-            style="margin-bottom: 2rem; border-bottom: 2px solid var(--border-color); padding-bottom: 1rem; color: var(--text-main); font-weight: 500; font-size: 1.25rem;">
-            Internal Logic & Multi-tenant Isolation</div>
 
         <div class="chart-container" style="background: none; border: none; padding: 0; margin-bottom: 3rem;">
             <img src="portfolio/certificates/images/Orchestrator_diagram.png" alt="Orchestrator Service Architecture Diagram"
@@ -544,7 +566,7 @@
                         <td><strong>Zero-Trust Tenant Scoping</strong><br><span style="font-size: 0.75rem; color: var(--accent-emerald); font-weight: 600; text-transform: uppercase;">Isolation</span></td>
                         <td style="color: #92400e; font-size: 0.85rem; line-height: 1.5;">Shared OpenSearch clusters introduced high risks of accidental cross-tenant data exposure through broad queries.</td>
                         <td style="color: var(--accent-blue); font-size: 0.85rem; line-height: 1.5;">Enforced infrastructure-level `Tenant.keyword` injection in every DSL query, ensuring strict logical partitioning at the core retrieval layer.</td>
-                        <td style="font-size: 0.85rem; line-height: 1.5;">Accepted higher DSL complexity to guarantee absolute multi-tenant data safety.</td>
+                        <td style="font-size: 0.85rem; line-height: 1.5;">Accepted higher DSL complexity to guarantee strict logical tenant isolation.</td>
                     </tr>
                     <tr>
                         <td><strong>Application-Level Scoped Check</strong><br><span style="font-size: 0.75rem; color: var(--accent-emerald); font-weight: 600; text-transform: uppercase;">Security Validation</span></td>
@@ -561,8 +583,8 @@
                     <tr>
                         <td><strong>Lightweight Internal Auth</strong><br><span style="font-size: 0.75rem; color: var(--accent-emerald); font-weight: 600; text-transform: uppercase;">Internal Trust</span></td>
                         <td style="color: #92400e; font-size: 0.85rem; line-height: 1.5;">Internal orchestration traffic in small environments required a trust boundary without the complexity of a full service mesh.</td>
-                        <td style="color: var(--accent-blue); font-size: 0.85rem; line-height: 1.5;">Implemented a shared secret header validation for service-to-service calls as a lightweight internal trust mechanism.</td>
-                        <td style="font-size: 0.85rem; line-height: 1.5;">Accepted limited protection against advanced insider threats vs full mTLS.</td>
+                        <td style="color: var(--accent-blue); font-size: 0.85rem; line-height: 1.5;">Implemented a shared secret header validation for service-to-service calls as a lightweight internal trust mechanism within private virtual network scopes.</td>
+                        <td style="font-size: 0.85rem; line-height: 1.5;">Accepted limited protection against advanced insider threats vs full mTLS, deemed acceptable for low-complexity internal private networks.</td>
                     </tr>
                 </tbody>
             </table>
@@ -570,71 +592,28 @@
 
         <!-- Section 6: Production Operations & Reliability -->
         <div class="section-title">Production Operations & Reliability</div>
-        <div class="subtitle"
-            style="margin-bottom: 3rem; border-bottom: 2px solid var(--border-color); padding-bottom: 1rem; color: var(--text-main); font-weight: 500; font-size: 1.25rem;">
-            Designing for Failure & Observability at Scale</div>
 
         <div class="pillars-grid">
             <!-- Observability Card -->
             <div class="pillar-card">
                 <div class="pillar-icon">📊</div>
                 <h3 style="color: var(--accent-emerald);">Observability Pipeline</h3>
-                <p>Implemented <strong>OpenTelemetry</strong> standards with unified <strong>Correlation IDs</strong> across all search flows. This enables distributed tracing across async boundaries, reducing <strong>MTTR</strong> by providing immediate request causality in centralized logs.</p>
+                <p>Implemented OpenTelemetry-based distributed tracing with W3C <code>traceparent</code> propagation and unified Correlation IDs across async search flows. Structured logs were centralized through Serilog, enabling rapid cross-service incident debugging and significantly reducing MTTR during production failures.</p>
             </div>
 
             <!-- Reliability Card -->
             <div class="pillar-card">
                 <div class="pillar-icon">🛡️</div>
                 <h3 style="color: var(--accent-emerald);">Failure Containment</h3>
-                <p>Designed with a "Fail-Fast" mindset using <strong>Bulkhead Isolation</strong> and <strong>Circuit Breakers</strong>. By establishing strict timeout boundaries, the system prevents transient downstream delays from cascading into platform-wide outages.</p>
+                <p>Designed with a fail-fast resilience model using Bulkhead Isolation, Circuit Breakers, strict timeout budgets, and end-to-end CancellationToken propagation. This prevents transient downstream latency from exhausting shared resources or cascading into platform-wide outages.</p>
             </div>
 
-            <!-- Scaling Card -->
+            <!-- Offloading Card -->
             <div class="pillar-card">
-                <div class="pillar-icon">🚀</div>
-                <h3 style="color: var(--accent-emerald);">Runtime Governance</h3>
-                <p>Engineered for <strong>Stateless Horizontal Scaling</strong>. System health is managed via granular <strong>Liveness/Readiness probes</strong>, ensuring seamless Rolling Updates and cluster stability during traffic surges.</p>
+                <div class="pillar-icon">⚡</div>
+                <h3 style="color: var(--accent-emerald);">Asynchronous Offloading</h3>
+                <p>Engineered with a non-blocking request pipeline using .NET <strong>Hosted Services</strong> and bounded in-memory queues. Concurrency is optimized via <strong>Lock Striping</strong> using a hash-indexed lock array, decoupling heavy telemetries from the search hot path without lock contention.</p>
             </div>
-        </div>
-
-        <div style="font-size: 1.1rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--text-main);">Operational Capability Matrix</div>
-        <div class="adr-table-container" style="margin-bottom: 3rem;">
-            <table class="adr-table">
-                <thead>
-                    <tr>
-                        <th style="width: 25%;">Operational Capability</th>
-                        <th style="width: 50%;">Production Strategy</th>
-                        <th style="width: 25%;">System Impact</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Distributed Tracing</strong></td>
-                        <td style="color: var(--accent-blue);">OpenTelemetry + W3C Traceparent propagation across service boundaries.</td>
-                        <td><span class="status-tag">High Visibility</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Failure Isolation</strong></td>
-                        <td style="color: var(--accent-blue);">Circuit Breakers + Timeout boundaries at all I/O integration points.</td>
-                        <td><span class="status-tag">Cascading Prevention</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Incident Debugging</strong></td>
-                        <td style="color: var(--accent-blue);">Structured Centralized Logging (Serilog) with indexed Correlation IDs.</td>
-                        <td><span class="status-tag">Lower MTTR</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Health Monitoring</strong></td>
-                        <td style="color: var(--accent-blue);">Granular Health Probes monitoring downstream connectivity & memory pressure.</td>
-                        <td><span class="status-tag">Zero-Downtime</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Resource Safety</strong></td>
-                        <td style="color: var(--accent-blue);">End-to-end CancellationToken propagation for cluster-wide resource reclamation.</td>
-                        <td><span class="status-tag">Cost Efficiency</span></td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
 
         <div style="font-size: 1.1rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--text-main);">Failure Scenario Handling (Antifragility)</div>
@@ -677,114 +656,46 @@
             </table>
         </div>
 
-        <!-- Section 7: Internal Service Architecture & Governance -->
-        <div class="section-title">Internal Service Architecture & Governance</div>
-        <div class="subtitle"
-            style="margin-bottom: 3rem; border-bottom: 2px solid var(--border-color); padding-bottom: 1rem; color: var(--text-main); font-weight: 500; font-size: 1.25rem;">
-            Modular Boundaries, Dependency Rules & Cross-Cutting Enforcement</div>
 
-        <div class="pillars-grid" style="grid-template-columns: repeat(2, 1fr);">
-            <!-- Dependency Direction Card -->
+        <!-- Section 7: Dynamic Configuration Governance -->
+        <div class="section-title">Dynamic Configuration Governance</div>
+
+        <p style="margin-bottom: 2rem; color: var(--text-dim); font-size: 1.05rem;">
+            The platform decouples environment parameters, business rules, and security scopes from the compiled codebase. All environment profiles are consolidated within the version-controlled Git repository. Through <strong>Spring Cloud Config Server</strong> and <strong>Steeltoe .NET</strong> integrations, configurations are dynamically injected at runtime, providing auditability and zero-downtime hot reloading.
+        </p>
+
+        <div class="tech-grid">
+            <!-- GitOps Hub Card -->
             <div class="tech-card">
-                <div class="tech-badge">Clean Architecture</div>
-                <h3>Dependency Governance</h3>
+                <div class="tech-badge">GitOps</div>
+                <h3>Centralized Config Registry</h3>
                 <div class="stage-item">
-                    <strong>Rule: Dependencies Always Point Inward</strong>
-                    <p>Enforced a strict unidirectional dependency flow where the core Domain contains zero external dependencies. This ensures that business invariants are protected from infrastructure volatility (OpenSearch SDKs, Keycloak, or Redis changes).</p>
+                    <strong>Separation of Concerns</strong>
+                    <p>Decouples sensitive configurations, OpenSearch connection settings, and feature flags from compiled C# code assemblies.</p>
                 </div>
                 <div class="stage-item">
-                    <strong>Modular Boundaries</strong>
-                    <p>System components are decoupled into high-cohesion modules, allowing teams to evolve orchestration logic and indexing strategies independently, scaling the organization without deployment contention.</p>
+                    <strong>Versioned Audit Trails</strong>
+                    <p>Every profile modification is managed via Pull Requests, ensuring rigorous peer reviews and complete traceability of system environment changes.</p>
                 </div>
             </div>
 
-            <!-- Ownership Card -->
+            <!-- Runtime Engine Card -->
             <div class="tech-card">
-                <div class="tech-badge">Ownership</div>
-                <h3>Data & Flow Ownership</h3>
+                <div class="tech-badge">Runtime</div>
+                <h3>Dynamic Injection Engine</h3>
                 <div class="stage-item">
-                    <strong>Gateway Level</strong>
-                    <p>Owns distributed identity validation, request-level caching policies, and initial routing refresh.</p>
+                    <strong>Steeltoe Integration</strong>
+                    <p>Integrates Steeltoe ConfigServer client within <code>Program.cs</code>, pulling properties dynamically from the centralized Azure Config Center.</p>
                 </div>
                 <div class="stage-item">
-                    <strong>Orchestrator Level</strong>
-                    <p>Owns tenant context resolution, resource-scoped validation (IDOR defense), and retry/circuit-breaker boundaries.</p>
+                    <strong>Zero-Downtime Hot Reload</strong>
+                    <p>Configuration updates trigger dynamic refresh events in the containerized services, updating parameters without restarting critical backend instances.</p>
                 </div>
             </div>
-        </div>
-
-        <div style="font-size: 1.1rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1.5rem; color: var(--text-main);">Dependency Rule Matrix</div>
-        <div class="adr-table-container" style="margin-bottom: 3rem;">
-            <table class="adr-table">
-                <thead>
-                    <tr>
-                        <th style="width: 25%;">Module Layer</th>
-                        <th style="width: 45%;">Core Responsibility</th>
-                        <th style="width: 30%;">Allowed Dependencies</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Domain Layer</strong></td>
-                        <td>Business invariants & core search contracts.</td>
-                        <td><span class="status-tag" style="background: #fef2f2; color: #991b1b;">None</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Application Layer</strong></td>
-                        <td>Use-case orchestration & flow coordination.</td>
-                        <td><span class="status-tag">Domain</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Infrastructure</strong></td>
-                        <td>External SDKs (OpenSearch, Redis, SQL).</td>
-                        <td><span class="status-tag">Domain</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong>API / Presentation</strong></td>
-                        <td>Transport, AuthZ, & Scoped Validation.</td>
-                        <td><span class="status-tag">Application</span></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <div style="font-size: 1.1rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--text-main);">Cross-Cutting Governance Matrix</div>
-        <div class="adr-table-container">
-            <table class="adr-table" style="margin-bottom: 2rem;">
-                <thead>
-                    <tr>
-                        <th style="width: 25%;">Concern</th>
-                        <th style="width: 45%;">Enforcement Strategy</th>
-                        <th style="width: 30%;">Ownership</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Tenant Isolation</strong></td>
-                        <td style="color: var(--accent-blue);">Scoped `ITenantContext` injected via Middleware.</td>
-                        <td>Infrastructure Pipeline</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Correlation Tracing</strong></td>
-                        <td style="color: var(--accent-blue);">Unified Header propagation in Middleware.</td>
-                        <td>Application Core</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Reliability (Retries)</strong></td>
-                        <td style="color: var(--accent-blue);">Centralized Polly Policy Registries.</td>
-                        <td>Infrastructure Adapters</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Exception Mapping</strong></td>
-                        <td style="color: var(--accent-blue);">Global Exception Middleware (RFC 7807).</td>
-                        <td>API Layer</td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
 
         <footer>
-            DISTRIBUTED SEARCH PLATFORM | OPERATIONAL EXCELLENCE | 2026
+            SEARCH PLATFORM ARCHITECTURE | 2026
         </footer>
     </div>
 </body>
